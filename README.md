@@ -35,10 +35,10 @@ Open Command Prompt or PowerShell and execute the following commands:
 
 ```cmd
 :: 1. Clone the repository
-git clone https://github.com/mohana9985/ai-portfolio.git
+https://github.com/mohana9985/Automatic_Portfolio.git
 
 :: 2. Navigate into the directory
-cd ai-portfolio
+cd Automatic_portfolio
 
 :: 3. Install dependencies
 npm install
@@ -53,10 +53,10 @@ Open the Terminal app and execute the following commands:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/mohana9985/ai-portfolio.git
+https://github.com/mohana9985/Automatic_Portfolio.git
 
 # 2. Navigate into the directory
-cd ai-portfolio
+cd Automatic_Portfolio
 
 # 3. Install dependencies
 npm install
@@ -71,10 +71,10 @@ Open your preferred terminal emulator and execute the following commands:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/mohana9985/ai-portfolio.git
+https://github.com/mohana9985/Automatic_Portfolio.git
 
 # 2. Navigate into the directory
-cd ai-portfolio
+cd Automatic_Portfolio
 
 # 3. Install dependencies
 npm install
