@@ -32,34 +32,34 @@ const Projects = () => {
       ],
       tools: ["Python", "LangGraph", "LLMs", "Jira API"]
     },
-    {
-      id: 3,
-      title: "Web App Showcase",
-      date: "05/2023 – 06/2023",
-      isAi: false,
-      icon: <Globe className="w-8 h-8 text-blue-400" />,
-      description: "Multiple web applications including a Weather Website, Personal Portfolio Website, and Contact Form.",
-      highlights: [
-        "Real-time weather data display integrating external APIs.",
-        "Responsive design and project showcase for personal portfolio.",
-        "Form validation and secure submission mechanisms."
-      ],
-      tools: ["HTML", "CSS", "JavaScript"]
-    },
-    {
-      id: 4,
-      title: "Utility Interfaces",
-      date: "05/2023 – 05/2023",
-      isAi: false,
-      icon: <Code2 className="w-8 h-8 text-green-400" />,
-      description: "Developed functional utility applications including a Calculator, Student Enrollment Form, and To-Do List.",
-      highlights: [
-        "Basic arithmetic operations handling in Calculator app.",
-        "Data capture and dynamic display in Student Enrollment Form.",
-        "Task management with add, complete, and remove features."
-      ],
-      tools: ["HTML", "CSS", "JavaScript"]
-    },
+    // {
+    //   id: 3,
+    //   title: "Web App Showcase",
+    //   date: "05/2023 – 06/2023",
+    //   isAi: false,
+    //   icon: <Globe className="w-8 h-8 text-blue-400" />,
+    //   description: "Multiple web applications including a Weather Website, Personal Portfolio Website, and Contact Form.",
+    //   highlights: [
+    //     "Real-time weather data display integrating external APIs.",
+    //     "Responsive design and project showcase for personal portfolio.",
+    //     "Form validation and secure submission mechanisms."
+    //   ],
+    //   tools: ["HTML", "CSS", "JavaScript"]
+    // },
+    // {
+    //   id: 4,
+    //   title: "Utility Interfaces",
+    //   date: "05/2023 – 05/2023",
+    //   isAi: false,
+    //   icon: <Code2 className="w-8 h-8 text-green-400" />,
+    //   description: "Developed functional utility applications including a Calculator, Student Enrollment Form, and To-Do List.",
+    //   highlights: [
+    //     "Basic arithmetic operations handling in Calculator app.",
+    //     "Data capture and dynamic display in Student Enrollment Form.",
+    //     "Task management with add, complete, and remove features."
+    //   ],
+    //   tools: ["HTML", "CSS", "JavaScript"]
+    // },
     {
       id: 5,
       title: "RS Bank Application",
