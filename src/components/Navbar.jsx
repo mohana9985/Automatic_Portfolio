@@ -101,6 +101,15 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
+              <a
+                href="https://drive.google.com/drive/folders/1c_xxWGewT173wVlh2dQ9nxsNon_RCGNr?usp=share_link"
+                target="_blank"
+                rel="noreferrer"
+                className="px-6 py-3 rounded-full border border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black transition-all duration-300 text-lg font-semibold shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_25px_rgba(0,243,255,0.5)] mt-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Download CV
+              </a>
             </div>
           </motion.div>
         )}
