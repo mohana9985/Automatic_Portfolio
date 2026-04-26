@@ -4,26 +4,26 @@ import { Calendar } from 'lucide-react';
 
 const Experience = () => {
   const experiences = [
-    {
-      role: "Java Full Stack Internship",
-      company: "KodNest",
-      duration: "05/2024 - 06/2024",
-    },
-    {
-      role: "Cybersecurity Internship",
-      company: "Indian Servers",
-      duration: "05/2023 - 07/2023",
-    },
-    {
-      role: "Web Development Internship",
-      company: "Internsavy",
-      duration: "05/2023 - 06/2023",
-    },
-    {
-      role: "Web Development Internship",
-      company: "Let Grow Me",
-      duration: "05/2023 - 05/2023",
-    },
+    // {
+    //   role: "Java Full Stack Internship",
+    //   company: "KodNest",
+    //   duration: "05/2024 - 06/2024",
+    // },
+    // {
+    //   role: "Cybersecurity Internship",
+    //   company: "Indian Servers",
+    //   duration: "05/2023 - 07/2023",
+    // },
+    // {
+    //   role: "Web Development Internship",
+    //   company: "Internsavy",
+    //   duration: "05/2023 - 06/2023",
+    // },
+    // {
+    //   role: "Web Development Internship",
+    //   company: "Let Grow Me",
+    //   duration: "05/2023 - 05/2023",
+    // },
     {
       role: "Python Developer Internship",
       company: "BDPS Institute",
