@@ -7,6 +7,7 @@ import Skills from './components/Skills';
 import Github from './components/Github';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
+import Chatbot from './components/Chatbot';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Experience />
         <Contact />
       </main>
+      <Chatbot />
       
       <footer className="py-8 border-t border-white/10 text-center flex flex-col items-center justify-center relative overflow-hidden">
         {/* Subtle background glow for footer */}
