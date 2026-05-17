@@ -1,4 +1,4 @@
-# Kureti Mohana SambaSiva - AI Engineer Portfolio
+# Automatic Portfolio
 
 A premium, neon-themed React portfolio designed specifically to showcase expertise in Generative AI, LangGraph, LLMs, and modern full-stack development. It features dynamic API integrations, glowing accents, and smooth animations powered by Tailwind CSS and Framer Motion.
 
