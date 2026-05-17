@@ -10,7 +10,9 @@ A premium, neon-themed React portfolio designed specifically to showcase experti
   - [2. Set Up the AI Backend](#2-set-up-the-ai-backend-fastapi--groq)
   - [3. Set Up the Frontend](#3-set-up-the-frontend-reactvite)
 - [Project Structure](#-project-structure)
-- [Component Usage](#-component-usage-srccomponents)
+- [Component Usage](#-frontend-components-srccomponents)
+- [Backend Architecture](#️-backend-architecture-srcbackend)
+- [Deployment](#-deployment)
 - [Built With](#️-built-with)
 - [License](#-license)
 
@@ -40,11 +42,13 @@ cd Automatic_Portfolio
 The portfolio includes an intelligent chatbot powered by the lightning-fast Groq API.
 
 1. Obtain a free API key from the [Groq Console](https://console.groq.com/keys).
-2. Create a `.env` file in the root directory and add your key:
+2. Obtain a free API key from [Resend](https://resend.com) for the contact form.
+3. Create a `.env` file inside `src/backend/` and add your keys:
    ```env
    GROQ_API_KEY=your_groq_api_key_here
+   RESEND_API_KEY=your_resend_api_key_here
    ```
-3. Open a terminal and start the backend:
+4. Open a terminal and start the backend:
    ```bash
    # Create and activate a virtual environment (optional but recommended)
    python -m venv .venv
@@ -82,12 +86,12 @@ The portfolio is built with Vite + React. Below is the structured breakdown of t
 
 ```text
 Automatic_Portfolio/
-├── .env                    # Environment variables (e.g., GROQ_API_KEY)
 ├── public/                 # Static assets that don't need to be processed by Vite
 ├── src/
 │   ├── assets/             # Images, SVGs, and other media used in the UI
 │   ├── backend/            # Python FastAPI Backend
-│   │   └── main.py         # AI instructions, Groq integration, and API endpoint
+│   │   ├── main.py         # AI instructions, Groq/Resend integration, and API endpoints
+│   │   └── .env            # Environment variables (GROQ_API_KEY, RESEND_API_KEY)
 │   ├── components/         # All modular React view components
 │   │   ├── Chatbot.jsx     # Floating AI Assistant widget and streaming UI
 │   │   ├── Contact.jsx
@@ -103,7 +107,6 @@ Automatic_Portfolio/
 │   └── main.jsx            # React setup and DOM rendering entry point
 ├── index.html              # The main HTML template
 ├── requirements.txt        # Python backend dependencies
-├── tailwind.config.js      # Styling design system (colors, spacing, plugins)
 ├── vite.config.js          # Vite bundler configuration
 └── package.json            # Project metadata and dependencies
 ```
@@ -130,17 +133,27 @@ The UI is highly modular. Here is exactly what each section handles:
 
 The backend is built as a lightweight, lightning-fast API designed exclusively to power the AI Assistant.
 
-*   **`main.py`**: The core of the backend server. It initializes the **FastAPI** application, configures CORS to communicate safely with the frontend, and handles the `/chat` endpoint. It uses the `AsyncGroq` client to pass system instructions and user queries to the LLaMA 3 model, streaming the response back to the frontend in real-time.
-*   **`.env`**: Stores sensitive environment variables securely (specifically the `GROQ_API_KEY`). This file is ignored by Git to prevent API keys from leaking publicly.
-*   **`requirements.txt`**: A concise list of Python dependencies (`fastapi`, `uvicorn`, `pydantic`, `groq`, `python-dotenv`) required to run the server.
+*   **`main.py`**: The core of the backend server. Initializes the **FastAPI** application, configures CORS, and exposes two endpoints:
+    *   `/chat` — streams AI responses using the `AsyncGroq` client (LLaMA 3 model).
+    *   `/contact` — handles contact form submissions and sends emails via the **Resend** API.
+*   **`.env`**: Stores sensitive environment variables (`GROQ_API_KEY`, `RESEND_API_KEY`). Ignored by Git.
+*   **`requirements.txt`**: Python dependencies (`fastapi`, `uvicorn`, `pydantic`, `groq`, `httpx`, `python-dotenv`).
+
+---
+
+## 🌐 Deployment
+
+*   **Frontend**: Hosted on [Vercel](https://vercel.com)
+*   **Backend**: Hosted on [Render](https://render.com)
 
 ---
 
 ## 🛠️ Built With
 
 *   **Frontend**: React (Vite), Tailwind CSS, Framer Motion, Lucide React
-*   **Backend**: Python, FastAPI, Uvicorn, Pydantic
+*   **Backend**: Python, FastAPI, Uvicorn, Pydantic, HTTPX
 *   **AI Engine**: Groq API (LLaMA 3)
+*   **Email**: Resend API
 
 ---
 
