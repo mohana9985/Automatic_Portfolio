@@ -1,7 +1,5 @@
 import os
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import httpx
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -190,33 +188,34 @@ class ContactRequest(BaseModel):
 
 @app.post("/contact")
 async def contact_endpoint(request: ContactRequest):
-    gmail_user = os.environ.get("GMAIL_USER")
-    gmail_app_password = os.environ.get("GMAIL_APP_PASSWORD")
+    api_key = os.environ.get("RESEND_API_KEY")
 
-    if not gmail_user or not gmail_app_password:
+    if not api_key:
         raise HTTPException(status_code=500, detail="Email service not configured.")
 
     try:
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = f"New Portfolio Message from {request.name}"
-        msg["From"] = gmail_user
-        msg["To"] = gmail_user
-        msg["Reply-To"] = request.email
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                "https://api.resend.com/emails",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "from": "Portfolio Contact <onboarding@resend.dev>",
+                    "to": ["mohanakureti111555@gmail.com"],
+                    "reply_to": request.email,
+                    "subject": f"New Portfolio Message from {request.name}",
+                    "text": f"Name: {request.name}\nEmail: {request.email}\n\nMessage:\n{request.message}"
+                }
+            )
 
-        body = f"""
-Name: {request.name}
-Email: {request.email}
+        if response.status_code in (200, 201):
+            return {"status": "ok", "message": "Message sent successfully."}
+        else:
+            raise HTTPException(status_code=500, detail=f"Resend error: {response.text}")
 
-Message:
-{request.message}
-        """
-        msg.attach(MIMEText(body, "plain"))
-
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(gmail_user, gmail_app_password)
-            server.sendmail(gmail_user, gmail_user, msg.as_string())
-
-        return {"status": "ok", "message": "Message sent successfully."}
-
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")
