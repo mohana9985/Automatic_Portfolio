@@ -203,7 +203,7 @@ async def contact_endpoint(request: ContactRequest):
                 },
                 json={
                     "from": "Portfolio Contact <onboarding@resend.dev>",
-                    "to": ["mohanakureti111555@gmail.com"],
+                    "to": ["kureti9985111555@gmail.com"],
                     "reply_to": request.email,
                     "subject": f"New Portfolio Message from {request.name}",
                     "text": f"Name: {request.name}\nEmail: {request.email}\n\nMessage:\n{request.message}"
