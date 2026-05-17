@@ -13,18 +13,16 @@ const Contact = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
     try {
-      const response = await fetch("https://formsubmit.co/ajax/mohanakureti111555@gmail.com", {
+      const response = await fetch(`${apiUrl}/contact`, {
         method: "POST",
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             name: data.name,
             email: data.email,
             message: data.message,
-            _subject: "New Message from AI Portfolio"
         })
       });
 

@@ -1,4 +1,7 @@
 import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -179,3 +182,41 @@ async def chat_endpoint(request: ChatRequest):
 @app.get("/")
 def read_root():
     return {"status": "ok", "message": "Portfolio AI Agent API is running with Groq API."}
+
+class ContactRequest(BaseModel):
+    name: str
+    email: str
+    message: str
+
+@app.post("/contact")
+async def contact_endpoint(request: ContactRequest):
+    gmail_user = os.environ.get("GMAIL_USER")
+    gmail_app_password = os.environ.get("GMAIL_APP_PASSWORD")
+
+    if not gmail_user or not gmail_app_password:
+        raise HTTPException(status_code=500, detail="Email service not configured.")
+
+    try:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = f"New Portfolio Message from {request.name}"
+        msg["From"] = gmail_user
+        msg["To"] = gmail_user
+        msg["Reply-To"] = request.email
+
+        body = f"""
+Name: {request.name}
+Email: {request.email}
+
+Message:
+{request.message}
+        """
+        msg.attach(MIMEText(body, "plain"))
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(gmail_user, gmail_app_password)
+            server.sendmail(gmail_user, gmail_user, msg.as_string())
+
+        return {"status": "ok", "message": "Message sent successfully."}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")

@@ -1,65 +1,51 @@
-# Logs
+# Dependencies
+node_modules/
 
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# Build output
+dist/
+dist-ssr/
+build/
+.vite/
 
-# Node / Frontend
-
-node_modules
-dist
-dist-ssr
-build
-.vite
-*.local
-
-
-# Python / Backend
-
-**pycache**/
+# Python
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
 *.sqlite3
 *.db
-
-# Virtual Environment
-
 venv/
 env/
 ENV/
 
-# Environment variables
-
+# Environment
 .env
 .env.*
 !.env.example
 
-# OS Files
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
+# OS
 .DS_Store
 Thumbs.db
 
-
-# Editor directories and files
-
+# Editor
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 *.suo
-*.ntvs*
-*.njsproj
-*.sln
 *.sw?
 
-# Misc
+# Graphify
+graphify-out/
 
+# Misc
 coverage/
 .cache/
 tmp/
-implementation_plan.md
-walkthrough.md
+*.local
