@@ -5,6 +5,20 @@ import { Database, Network, Globe, Code2, Landmark, Sparkles, BookMarked } from 
 const Projects = () => {
   const projects = [
     {
+      id: 1,
+      title: "Prompt Library",
+      date: "05/2026 – 05/2026",
+      isAi: true,
+      icon: <BookMarked className="w-8 h-8 text-neon-cyan drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]" />,
+      description: "Full-stack AI prompt-sharing platform built with Flask and MongoDB, enabling users to browse, create, and share reusable LLM prompts across 6 categories.",
+      highlights: [
+        "Architected a layered REST API (routes → models → MongoDB) with session-based auth, full-text search, and view-count analytics.",
+        "Delivered one-click clipboard copy, bulk JSON import, and paginated search so users can reuse prompts without writing any code.",
+        "Structured for cloud deployment via Gunicorn + MongoDB Atlas with environment-based config for zero-change prod/dev parity."
+      ],
+      tools: ["Python", "Flask", "MongoDB", "REST API", "JavaScript"]
+    },
+    {
       id: 2,
       title: "MCP-Sales Data Generation",
       date: "07/2025 – 07/2025",
@@ -60,20 +74,6 @@ const Projects = () => {
     //   ],
     //   tools: ["HTML", "CSS", "JavaScript"]
     // },
-    {
-      id: 1,
-      title: "Prompt Library",
-      date: "05/2026 – 05/2026",
-      isAi: true,
-      icon: <BookMarked className="w-8 h-8 text-neon-cyan drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]" />,
-      description: "Full-stack AI prompt-sharing platform built with Flask and MongoDB, enabling users to browse, create, and share reusable LLM prompts across 6 categories.",
-      highlights: [
-        "Architected a layered REST API (routes → models → MongoDB) with session-based auth, full-text search, and view-count analytics.",
-        "Delivered one-click clipboard copy, bulk JSON import, and paginated search so users can reuse prompts without writing any code.",
-        "Structured for cloud deployment via Gunicorn + MongoDB Atlas with environment-based config for zero-change prod/dev parity."
-      ],
-      tools: ["Python", "Flask", "MongoDB", "REST API", "JavaScript"]
-    },
     {
       id: 5,
       title: "RS Bank Application",
