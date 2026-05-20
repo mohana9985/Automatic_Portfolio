@@ -180,6 +180,7 @@ async def chat_endpoint(request: ChatRequest):
     return StreamingResponse(generate(), media_type="text/plain")
 
 @app.get("/")
+@app.head("/")
 def read_root():
     return {"status": "ok", "message": "Portfolio AI Agent API is running with Groq API."}
 

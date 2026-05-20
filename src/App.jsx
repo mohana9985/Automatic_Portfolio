@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Prompts from './components/Prompts';
 import Skills from './components/Skills';
-import Github from './components/Github';
 import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Chatbot from './components/Chatbot';
+
+const Github = lazy(() => import('./components/Github'));
+const Contact = lazy(() => import('./components/Contact'));
+const Chatbot = lazy(() => import('./components/Chatbot'));
 
 function App() {
   return (
@@ -18,11 +19,15 @@ function App() {
         <Projects />
         <Prompts />
         <Skills />
-        <Github />
-        <Experience />
-        <Contact />
+        <Suspense fallback={null}>
+          <Github />
+          <Experience />
+          <Contact />
+        </Suspense>
       </main>
-      <Chatbot />
+      <Suspense fallback={null}>
+        <Chatbot />
+      </Suspense>
       
       <footer className="py-8 border-t border-white/10 text-center flex flex-col items-center justify-center relative overflow-hidden">
         {/* Subtle background glow for footer */}
