@@ -1,16 +1,19 @@
 # Automatic Portfolio
 
-A premium, neon-themed React portfolio designed specifically to showcase expertise in Generative AI, LangGraph, LLMs, and modern full-stack development. It features dynamic API integrations, glowing accents, and smooth animations powered by Tailwind CSS and Framer Motion.
+A premium, neon-themed React portfolio designed to showcase expertise in Generative AI, LangGraph, LLMs, and modern full-stack development. Features a streaming AI chatbot, live GitHub integration, dynamic contact form, and smooth animations powered by Tailwind CSS and Framer Motion.
+
+**Live:** [www.kuretimohana.dev](https://www.kuretimohana.dev)
 
 ## 📑 Table of Contents
 
 - [Prerequisites](#-prerequisites)
 - [Quick Start](#-quick-start)
   - [1. Clone the Repository](#1-clone-the-repository)
-  - [2. Set Up the AI Backend](#2-set-up-the-ai-backend-fastapi--groq)
-  - [3. Set Up the Frontend](#3-set-up-the-frontend-reactvite)
+  - [2. Configure Environment Variables](#2-configure-environment-variables)
+  - [3. Set Up the AI Backend](#3-set-up-the-ai-backend)
+  - [4. Set Up the Frontend](#4-set-up-the-frontend)
 - [Project Structure](#-project-structure)
-- [Component Usage](#-frontend-components-srccomponents)
+- [Frontend Components](#-frontend-components-srccomponents)
 - [Backend Architecture](#️-backend-architecture-srcbackend)
 - [Deployment](#-deployment)
 - [Built With](#️-built-with)
@@ -20,17 +23,15 @@ A premium, neon-themed React portfolio designed specifically to showcase experti
 
 ## 📋 Prerequisites
 
-Before you begin, ensure you have the following installed:
-*   **[Node.js](https://nodejs.org/)** (v16.0 or higher recommended)
-*   **[npm](https://www.npmjs.com/)** or **[Yarn](https://yarnpkg.com/)**
-*   **[Python 3](https://www.python.org/)** (Required for the AI backend)
-*   **[Git](https://git-scm.com/)**
+- **[Node.js](https://nodejs.org/)** (v16.0 or higher)
+- **[Python 3](https://www.python.org/)** (v3.10 or higher)
+- **[Git](https://git-scm.com/)**
+- A free **[Groq API key](https://console.groq.com/keys)**
+- A free **[Resend API key](https://resend.com)**
 
 ---
 
 ## 🚀 Quick Start
-
-Follow the instructions below to run both the frontend UI and the AI backend locally.
 
 ### 1. Clone the Repository
 ```bash
@@ -38,122 +39,170 @@ git clone https://github.com/mohana9985/Automatic_Portfolio.git
 cd Automatic_Portfolio
 ```
 
-### 2. Set Up the AI Backend (FastAPI & Groq)
-The portfolio includes an intelligent chatbot powered by the lightning-fast Groq API.
+### 2. Configure Environment Variables
 
-1. Obtain a free API key from the [Groq Console](https://console.groq.com/keys).
-2. Obtain a free API key from [Resend](https://resend.com) for the contact form.
-3. Create a `.env` file inside `src/backend/` and add your keys:
-   ```env
-   GROQ_API_KEY=your_groq_api_key_here
-   RESEND_API_KEY=your_resend_api_key_here
-   ```
-4. Open a terminal and start the backend:
-   ```bash
-   # Create and activate a virtual environment (optional but recommended)
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+Create a `.env` file in the **root** of the project:
 
-   # Install backend dependencies
-   pip install -r requirements.txt
+```env
+# Frontend (Vite)
+VITE_GITHUB_USERNAME=your_github_username
+VITE_GITHUB_PROFILE_URL=https://github.com/your_github_username
+VITE_LINKEDIN_URL=https://linkedin.com/in/your_linkedin
+VITE_CV_URL=https://drive.google.com/your_cv_link
+VITE_CONTACT_EMAIL=your_email@gmail.com
+VITE_API_URL=http://127.0.0.1:8000
 
-   # Start the backend server
-   cd src/backend
-   uvicorn main:app --reload
-   ```
+# Backend (Python)
+GROQ_API_KEY=your_groq_api_key
+RESEND_API_KEY=your_resend_api_key
+RECIPIENT_EMAIL=your_email@gmail.com
+RESEND_FROM_EMAIL=Portfolio Contact <onboarding@resend.dev>
+ALLOWED_ORIGINS=http://localhost:5173
+```
 
-### 3. Set Up the Frontend (React/Vite)
-Open a **new** terminal window and run:
+> For local development only, you can override `VITE_API_URL` in a `.env.local` file — Vite gives it priority over `.env`.
+
+### 3. Set Up the AI Backend
 
 ```bash
-# Navigate to the root directory if not already there
-cd Automatic_Portfolio
+# Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# Install frontend dependencies
+# Install backend dependencies
+pip install -r requirements.txt
+
+# Start the backend server
+cd src/backend
+uvicorn main:app --reload
+```
+
+Backend will be available at `http://127.0.0.1:8000`.
+
+### 4. Set Up the Frontend
+
+Open a **new** terminal from the project root:
+
+```bash
 npm install
-
-# Start the development server
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:5173` and it will automatically connect to the backend at `http://127.0.0.1:8000`.
+Frontend will be available at `http://localhost:5173`.
 
 ---
 
 ## 📁 Project Structure
 
-The portfolio is built with Vite + React. Below is the structured breakdown of the workspace and the purpose of every file in the project ecosystem.
-
 ```text
 Automatic_Portfolio/
-├── public/                 # Static assets that don't need to be processed by Vite
+├── public/                 # Static assets
 ├── src/
-│   ├── assets/             # Images, SVGs, and other media used in the UI
-│   ├── backend/            # Python FastAPI Backend
-│   │   ├── main.py         # AI instructions, Groq/Resend integration, and API endpoints
-│   │   └── .env            # Environment variables (GROQ_API_KEY, RESEND_API_KEY)
-│   ├── components/         # All modular React view components
-│   │   ├── Chatbot.jsx     # Floating AI Assistant widget and streaming UI
-│   │   ├── Contact.jsx
-│   │   ├── Experience.jsx
-│   │   ├── Github.jsx
-│   │   ├── Hero.jsx
-│   │   ├── Navbar.jsx
-│   │   ├── Projects.jsx
-│   │   ├── Prompts.jsx
-│   │   └── Skills.jsx
-│   ├── App.jsx             # The root wrapper aggregating all components
-│   ├── index.css           # Global Tailwind directives and custom animation classes
-│   └── main.jsx            # React setup and DOM rendering entry point
-├── index.html              # The main HTML template
-├── requirements.txt        # Python backend dependencies
-├── vite.config.js          # Vite bundler configuration
-└── package.json            # Project metadata and dependencies
+│   ├── assets/             # Images and media
+│   ├── backend/            # Python FastAPI backend
+│   │   ├── main.py         # API endpoints, Groq/Resend integration, CORS config
+│   │   └── requirements.txt
+│   ├── components/         # React UI components
+│   │   ├── Chatbot.jsx     # Floating AI Assistant widget (lazy loaded)
+│   │   ├── Contact.jsx     # Contact form with Resend email (lazy loaded)
+│   │   ├── Experience.jsx  # Professional & academic timeline
+│   │   ├── Github.jsx      # Live GitHub repo feed (lazy loaded)
+│   │   ├── Hero.jsx        # Landing section
+│   │   ├── Navbar.jsx      # Responsive navigation with CV download
+│   │   ├── Projects.jsx    # Featured projects grid
+│   │   ├── Prompts.jsx     # AI prompt showcase cards
+│   │   └── Skills.jsx      # Categorized skills display
+│   ├── App.jsx             # Root component with lazy loading setup
+│   ├── index.css           # Global Tailwind directives and animations
+│   └── main.jsx            # React DOM entry point
+├── .env                    # Environment variables (gitignored)
+├── index.html              # HTML template
+├── requirements.txt        # Python dependencies
+├── vite.config.js          # Vite bundler config
+└── package.json            # Node dependencies
 ```
 
 ---
 
 ## 🧩 Frontend Components (src/components)
 
-The UI is highly modular. Here is exactly what each section handles:
+- **`Navbar.jsx`** — Responsive top navigation with smooth-scroll links, mobile hamburger menu, and a CV download button (URL from `VITE_CV_URL`).
+- **`Hero.jsx`** — Landing section with profile picture, titles, a mock code terminal, and call-to-action buttons.
+- **`Projects.jsx`** — Grid of featured projects. AI-focused projects get a pulsing neon highlight.
+- **`Prompts.jsx`** — Copyable AI prompt cards showcasing prompt engineering examples.
+- **`Skills.jsx`** — Categorized skills (AI & Models, Frameworks, Backend, DevOps) with glowing icons.
+- **`Experience.jsx`** — Dual timeline for professional internships and academic background.
+- **`Github.jsx`** *(lazy loaded)* — Fetches live repos from GitHub API, filters forks, displays top 4 most recently updated. Username from `VITE_GITHUB_USERNAME`.
+- **`Contact.jsx`** *(lazy loaded)* — Contact info panel (email, phone, location) and animated form that POSTs to the backend. Links from `VITE_LINKEDIN_URL`, `VITE_GITHUB_PROFILE_URL`, `VITE_CONTACT_EMAIL`.
+- **`Chatbot.jsx`** *(lazy loaded)* — Floating AI assistant that streams responses from the Groq-powered backend.
 
-*   **`Navbar.jsx`**: The responsive top navigation bar. Handles smooth-scrolling anchor links, a mobile hamburger menu, and a "Download CV" link pointing to an external Google Drive document.
-*   **`Chatbot.jsx`**: An interactive, floating AI Assistant widget that connects to the Python backend to answer questions about the portfolio. Features typing animations and markdown link rendering.
-*   **`Hero.jsx`**: The landing section of the website. It houses the primary profile picture, core titles ("Gen-AI Developer"), a mockup initialization code terminal, and primary call-to-action buttons.
-*   **`Projects.jsx`**: A grid layout displaying featured technical projects. Projects marked as "AI" receive a special pulsing neon border effect to stand out visually.
-*   **`Prompts.jsx`**: A unique section dedicated to outlining structural prompts for AI interaction, formatted cleanly into copyable cards.
-*   **`Skills.jsx`**: Categorizes technical skills (AI & Models, Frameworks & Cloud, Backend, Tools & DevOps) with clear, glowing icons for easy reading.
-*   **`Experience.jsx`**: Houses two cleanly defined timelines showcasing "Professional Journey" (internships) and "Academic Background & Training" (degrees and certifications).
-*   **`Github.jsx`**: Automatically communicates with the GitHub REST API (`users/mohana9985/repos`) to fetch, filter out forks, and display the user's 4 most recently updated repositories instantly.
-*   **`Contact.jsx`**: The footer component offering active communication channels (Email, Phone, Location data) and an animated payload "Transmission" form.
+> `Github`, `Contact`, and `Chatbot` are lazy loaded via `React.lazy()` to reduce the initial JS bundle size.
 
 ---
 
 ## ⚙️ Backend Architecture (src/backend)
 
-The backend is built as a lightweight, lightning-fast API designed exclusively to power the AI Assistant.
+Built as a lightweight FastAPI server powering the AI chatbot and contact form.
 
-*   **`main.py`**: The core of the backend server. Initializes the **FastAPI** application, configures CORS, and exposes two endpoints:
-    *   `/chat` — streams AI responses using the `AsyncGroq` client (LLaMA 3 model).
-    *   `/contact` — handles contact form submissions and sends emails via the **Resend** API.
-*   **`.env`**: Stores sensitive environment variables (`GROQ_API_KEY`, `RESEND_API_KEY`). Ignored by Git.
-*   **`requirements.txt`**: Python dependencies (`fastapi`, `uvicorn`, `pydantic`, `groq`, `httpx`, `python-dotenv`).
+**`main.py`** exposes three endpoints:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET / HEAD` | `/` | Health check |
+| `POST` | `/chat` | Streams AI responses via Groq (LLaMA 3) |
+| `POST` | `/contact` | Sends contact form emails via Resend |
+
+**Key configuration:**
+- `ALLOWED_ORIGINS` — comma-separated list of allowed frontend URLs for CORS (e.g. `https://www.kuretimohana.dev,http://localhost:5173`)
+- `RECIPIENT_EMAIL` — inbox that receives contact form messages
+- `RESEND_FROM_EMAIL` — sender label shown in the email "From" field
+- `GROQ_API_KEY` — authenticates with the Groq API
+- `RESEND_API_KEY` — authenticates with the Resend email API
 
 ---
 
 ## 🌐 Deployment
 
-*   **Frontend**: Hosted on [Vercel](https://vercel.com)
-*   **Backend**: Hosted on [Render](https://render.com)
+### Frontend → Vercel
+
+Set these environment variables in your Vercel dashboard:
+
+| Variable | Value |
+|----------|-------|
+| `VITE_API_URL` | `https://automatic-portfolio.onrender.com` |
+| `VITE_GITHUB_USERNAME` | `mohana9985` |
+| `VITE_GITHUB_PROFILE_URL` | `https://github.com/mohana9985` |
+| `VITE_LINKEDIN_URL` | your LinkedIn URL |
+| `VITE_CV_URL` | your Google Drive CV link |
+| `VITE_CONTACT_EMAIL` | your email address(es) |
+| `UV_LINK_MODE` | `copy` |
+
+### Backend → Render
+
+Set these environment variables in your Render dashboard:
+
+| Variable | Value |
+|----------|-------|
+| `GROQ_API_KEY` | your Groq API key |
+| `RESEND_API_KEY` | your Resend API key |
+| `RECIPIENT_EMAIL` | your email address |
+| `RESEND_FROM_EMAIL` | `Portfolio Contact <onboarding@resend.dev>` |
+| `ALLOWED_ORIGINS` | `https://www.kuretimohana.dev,https://kuretimohana.dev` |
+
+**Start command (Render):**
+```bash
+cd src/backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+```
 
 ---
 
 ## 🛠️ Built With
 
-*   **Frontend**: React (Vite), Tailwind CSS, Framer Motion, Lucide React
-*   **Backend**: Python, FastAPI, Uvicorn, Pydantic, HTTPX
-*   **AI Engine**: Groq API (LLaMA 3)
-*   **Email**: Resend API
+- **Frontend**: React (Vite), Tailwind CSS, Framer Motion, Lucide React
+- **Backend**: Python, FastAPI, Uvicorn, Pydantic, HTTPX
+- **AI Engine**: Groq API (LLaMA 3.1)
+- **Email**: Resend API
+- **Hosting**: Vercel (frontend) · Render (backend)
 
 ---
 
