@@ -6,6 +6,8 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const cvUrl = import.meta.env.VITE_CV_URL;
+
   const navLinks = [
     { name: 'Projects', href: '#projects' },
     { name: 'Prompts', href: '#prompts' },
@@ -63,7 +65,7 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="https://drive.google.com/drive/folders/1c_xxWGewT173wVlh2dQ9nxsNon_RCGNr?usp=share_link"
+            href={cvUrl}
             target="_blank"
             rel="noreferrer"
             className="px-5 py-2 rounded-full border border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black transition-all duration-300 text-sm font-semibold shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_25px_rgba(0,243,255,0.5)]"
@@ -102,7 +104,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://drive.google.com/drive/folders/1c_xxWGewT173wVlh2dQ9nxsNon_RCGNr?usp=share_link"
+                href={cvUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="px-6 py-3 rounded-full border border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black transition-all duration-300 text-lg font-semibold shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_25px_rgba(0,243,255,0.5)] mt-2"

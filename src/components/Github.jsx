@@ -9,7 +9,8 @@ const Github = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const GITHUB_USERNAME = 'mohana9985';
+  const GITHUB_USERNAME = import.meta.env.VITE_GITHUB_USERNAME;
+  const GITHUB_PROFILE_URL = import.meta.env.VITE_GITHUB_PROFILE_URL;
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -53,7 +54,7 @@ const Github = () => {
             </p>
           </div>
           <a 
-            href={`https://github/${GITHUB_USERNAME}`} 
+            href={GITHUB_PROFILE_URL}
             target="_blank" 
             rel="noreferrer"
             className="hidden md:flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"

@@ -6,6 +6,10 @@ import { motion } from 'framer-motion';
 const Contact = () => {
   const [formStatus, setFormStatus] = useState('idle');
 
+  const linkedinUrl = import.meta.env.VITE_LINKEDIN_URL;
+  const githubUrl = import.meta.env.VITE_GITHUB_PROFILE_URL;
+  const contactEmail = import.meta.env.VITE_CONTACT_EMAIL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('sending');
@@ -66,7 +70,7 @@ const Contact = () => {
           </p>
 
           <div className="space-y-4">
-            <a href="mailto:mohanakureti9985@gmail.com,kureti9985111555@gmail.com" className="group flex items-center gap-4 text-gray-300 hover:text-white transition-colors p-4 glass-panel hover:border-neon-cyan/30">
+            <a href={`mailto:${contactEmail}`} className="group flex items-center gap-4 text-gray-300 hover:text-white transition-colors p-4 glass-panel hover:border-neon-cyan/30">
               <div className="p-3 bg-[#0a0c14] border border-white/5 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
                 <Mail className="w-6 h-6 text-neon-cyan" />
               </div>
@@ -99,7 +103,7 @@ const Contact = () => {
             
             <div className="flex gap-4 pt-2">
               <a 
-                href="https://linkedin.com/in/kureti-mohana-sambasiva-a23481254" 
+                href={linkedinUrl}
                 target="_blank" 
                 rel="noreferrer"
                 className="flex-1 glass-panel p-4 flex justify-center items-center gap-2 text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group"
@@ -107,7 +111,7 @@ const Contact = () => {
                 <Linkedin className="w-5 h-5 group-hover:text-blue-400" /> LinkedIn
               </a>
               <a 
-                href="https://github.com/mohana9985" 
+                href={githubUrl}
                 target="_blank" 
                 rel="noreferrer"
                 className="flex-1 glass-panel p-4 flex justify-center items-center gap-2 text-gray-400 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all group"

@@ -13,9 +13,11 @@ load_dotenv()
 app = FastAPI(title="Portfolio AI Agent API")
 
 # Configure CORS so the React frontend can communicate with this backend
+allowed_origins = os.environ.get("ALLOWED_ORIGINS", "*").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins, you can restrict this to your frontend URL in production
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -202,8 +204,8 @@ async def contact_endpoint(request: ContactRequest):
                     "Content-Type": "application/json"
                 },
                 json={
-                    "from": "Portfolio Contact <onboarding@resend.dev>",
-                    "to": ["kureti9985111555@gmail.com"],
+                    "from": os.environ.get("RESEND_FROM_EMAIL", "Portfolio Contact <onboarding@resend.dev>"),
+                    "to": [os.environ.get("RECIPIENT_EMAIL", "kureti9985111555@gmail.com")],
                     "reply_to": request.email,
                     "subject": f"New Portfolio Message from {request.name}",
                     "text": f"Name: {request.name}\nEmail: {request.email}\n\nMessage:\n{request.message}"
