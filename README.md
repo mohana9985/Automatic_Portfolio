@@ -138,6 +138,17 @@ Automatic_Portfolio/
 
 > `Github`, `Contact`, and `Chatbot` are lazy loaded via `React.lazy()` to reduce the initial JS bundle size.
 
+### Bundle Size Optimization
+
+Reduced initial JS bundle by **32%** by lazy loading below-the-fold components (`Chatbot`, `Github`, `Contact`) using `React.lazy()` and `Suspense`, improving first page load speed and Core Web Vitals score.
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Initial JS bundle | 596 kB | 405 kB | **-32%** |
+| `Chatbot.jsx` | eager | lazy | deferred |
+| `Github.jsx` | eager | lazy | deferred |
+| `Contact.jsx` | eager | lazy | deferred |
+
 ---
 
 ## ⚙️ Backend Architecture (src/backend)
