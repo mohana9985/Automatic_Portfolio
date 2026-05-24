@@ -168,7 +168,8 @@ async def chat_endpoint(request: ChatRequest):
                 model=request.model,
                 messages=groq_messages,
                 stream=True,
-                max_tokens=1024
+                max_tokens=1024,
+                temperature=0.3
             )
             async for chunk in response_stream:
                 if chunk.choices and chunk.choices[0].delta.content:
