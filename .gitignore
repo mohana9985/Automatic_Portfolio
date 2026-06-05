@@ -50,13 +50,19 @@ Thumbs.db
 graphify-out/
 
 # Claude
-.claude/settings.local.json
+.claude/
 
 # Misc
 coverage/
 .cache/
 tmp/
 *.local
+
+# Security
+*.pem
+*.key
+*.cert
+*.p12
 
 # RAG / Knowledge base (raw inputs only — built index committed)
 src/backend/knowledge_raw/KURETI_MOHANA_SAMBASIVA.pdf

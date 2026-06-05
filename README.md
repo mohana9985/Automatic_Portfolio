@@ -4,6 +4,13 @@ A premium, neon-themed React portfolio designed to showcase expertise in Generat
 
 **Live:** [www.kuretimohana.dev](https://www.kuretimohana.dev)
 
+| Metric | Score |
+|--------|-------|
+| Performance | 100 |
+| Accessibility | 100 |
+| Best Practices | 96 |
+| SEO | 90+ |
+
 ## 📑 Table of Contents
 
 - [Prerequisites](#-prerequisites)
@@ -108,6 +115,7 @@ Automatic_Portfolio/
 │   │   ├── Experience.jsx  # Professional & academic timeline
 │   │   ├── Github.jsx      # Live GitHub repo feed (lazy loaded)
 │   │   ├── Hero.jsx        # Landing section
+│   │   ├── LoadingScreen.jsx # Branded loading screen shown on first visit
 │   │   ├── Navbar.jsx      # Responsive navigation with CV download
 │   │   ├── Projects.jsx    # Featured projects grid
 │   │   ├── Prompts.jsx     # AI prompt showcase cards
@@ -128,13 +136,14 @@ Automatic_Portfolio/
 
 - **`Navbar.jsx`** — Responsive top navigation with smooth-scroll links, mobile hamburger menu, and a CV download button (URL from `VITE_CV_URL`).
 - **`Hero.jsx`** — Landing section with profile picture, titles, a mock code terminal, and call-to-action buttons.
+- **`LoadingScreen.jsx`** — Branded loading screen displayed on first visit. Animates name → role → spinner, then fades out. Prevents black flash on Render cold start.
 - **`Projects.jsx`** — Grid of featured projects. AI-focused projects get a pulsing neon highlight.
 - **`Prompts.jsx`** — Copyable AI prompt cards showcasing prompt engineering examples.
 - **`Skills.jsx`** — Categorized skills (AI & Models, Frameworks, Backend, DevOps) with glowing icons.
 - **`Experience.jsx`** — Dual timeline for professional internships and academic background.
 - **`Github.jsx`** *(lazy loaded)* — Fetches live repos from GitHub API, filters forks, displays top 4 most recently updated. Username from `VITE_GITHUB_USERNAME`.
-- **`Contact.jsx`** *(lazy loaded)* — Contact info panel (email, phone, location) and animated form that POSTs to the backend. Links from `VITE_LINKEDIN_URL`, `VITE_GITHUB_PROFILE_URL`, `VITE_CONTACT_EMAIL`.
-- **`Chatbot.jsx`** *(lazy loaded)* — Floating AI assistant that streams responses from the Groq-powered backend.
+- **`Contact.jsx`** *(lazy loaded)* — Contact info panel (email, phone, location) and animated form that POSTs to the backend. Links from `VITE_LINKEDIN_URL`, `VITE_GITHUB_PROFILE_URL`, `VITE_CONTACT_EMAIL`. Shows warming-up message if Render backend is cold starting.
+- **`Chatbot.jsx`** *(lazy loaded)* — Floating AI assistant that streams responses from the Groq-powered backend. Shows warming-up message if Render backend is cold starting.
 
 > `Github`, `Contact`, and `Chatbot` are lazy loaded via `React.lazy()` to reduce the initial JS bundle size.
 
@@ -151,17 +160,20 @@ Reduced initial JS bundle by **32%** by lazy loading below-the-fold components (
 
 ### Image & Performance Optimization
 
-- `profile.jpg` converted to WebP — **267 kB → 37 kB (86% reduction)**
+- `profile.jpg` converted to WebP and resized to 224×224 (2× retina) — **267 kB → 4.3 kB (98% reduction)**
 - `<picture>` tag with WebP source + JPEG fallback for browser compatibility
 - `fetchpriority="high"` on LCP image for faster Largest Contentful Paint
-- Vendor code splitting (`react`, `framer-motion`, `lucide-react`/`react-icons`) for parallel chunk loading
+- Vendor code splitting (`react`, `framer-motion`, `lucide-react`) for parallel chunk loading
+- `react-icons` removed — replaced with inline SVGs (eliminates icon library from bundle)
 - `background:#030014` inlined in `index.html` to eliminate black flash before React mounts
+- `<link rel="preconnect">` for GitHub API and Render backend to reduce DNS + TCP handshake time
 
 | Metric | Before | After |
 |--------|--------|-------|
-| Profile image size | 267 kB | 37 kB |
-| LCP target | ~3.6s | improved |
+| Profile image size | 267 kB | 4.3 kB |
 | Black screen on load | yes | no |
+| Performance score | ~78 | 100 |
+| Accessibility score | ~79 | 100 |
 
 ---
 
