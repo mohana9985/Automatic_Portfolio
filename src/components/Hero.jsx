@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import profilePic from '../assets/profile.jpg';
 import profilePicWebp from '../assets/profile.webp';
+import { useTheme } from '../hooks/useTheme';
 
 const Hero = () => {
+  const { theme } = useTheme();
   const codeSnippet = `const AIEngineer = {
   name: "Kureti Mohana SambaSiva",
   role: "Gen-AI Developer & Prompt Engineer",
@@ -63,17 +65,17 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-4">
             <a 
               href="#projects" 
-              className="group relative px-8 py-3 bg-white text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+              className={`group relative px-8 py-3 font-semibold rounded-lg overflow-hidden transition-all duration-300 ${theme === 'light' ? 'bg-slate-900 text-white hover:shadow-[0_0_20px_rgba(15,23,42,0.3)]' : 'bg-white text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]'}`}
             >
               <div className="absolute inset-0 w-0 bg-neon-cyan transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-              <span className="relative flex items-center gap-2 group-hover:text-black">
+              <span className={`relative flex items-center gap-2 ${theme === 'light' ? 'group-hover:text-black' : 'group-hover:text-black'}`}>
                 View Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </a>
             
             <a 
               href="#prompts" 
-              className="px-8 py-3 border border-white/20 text-white rounded-lg hover:bg-white/5 hover:border-white/40 transition-all font-semibold flex items-center gap-2 backdrop-blur-sm"
+              className={`px-8 py-3 rounded-lg transition-all font-semibold flex items-center gap-2 backdrop-blur-sm ${theme === 'light' ? 'border border-slate-300 text-slate-700 hover:bg-slate-100 hover:border-slate-400' : 'border border-white/20 text-white hover:bg-white/5 hover:border-white/40'}`}
             >
               <Terminal className="w-4 h-4" /> Explore Prompts
             </a>
