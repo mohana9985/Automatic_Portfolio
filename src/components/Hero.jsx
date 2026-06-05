@@ -31,7 +31,7 @@ const Hero = () => {
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-[#0f111a]">
                 <picture>
                   <source srcSet={profilePicWebp} type="image/webp" />
-                  <img src={profilePic} alt="Kureti Mohana Sambasiva" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="eager" fetchPriority="high" width="112" height="112" />
+                  <img src={profilePic} alt="Kureti Mohana Sambasiva" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="eager" fetchPriority="high" width="224" height="224" />
                 </picture>
               </div>
               <div className="absolute inset-0 bg-gradient-to-tr from-neon-cyan to-neon-purple rounded-full blur-md opacity-40 group-hover:opacity-75 transition-opacity duration-500 -z-10"></div>
