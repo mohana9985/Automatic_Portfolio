@@ -104,7 +104,7 @@ Phase 2: The Expert (Senior Engineer Persona)
                 <div className="flex items-center gap-2">
                   <span className={prompt.color}>{prompt.icon}</span>
                   <div>
-                    <h4 className="text-sm font-semibold text-gray-200">{prompt.title}</h4>
+                    <h3 className="text-sm font-semibold text-gray-200">{prompt.title}</h3>
                     <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold">{prompt.category}</span>
                   </div>
                 </div>
@@ -112,6 +112,7 @@ Phase 2: The Expert (Senior Engineer Persona)
                   onClick={() => handleCopy(prompt.id, prompt.content)}
                   className="p-2 bg-white/5 rounded-md hover:bg-white/10 text-gray-400 hover:text-white transition-colors relative"
                   title="Copy Prompt"
+                  aria-label="Copy prompt"
                 >
                   <AnimatePresence mode="wait">
                     {copiedId === prompt.id ? (

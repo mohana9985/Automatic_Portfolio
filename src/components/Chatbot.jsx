@@ -185,6 +185,7 @@ const Chatbot = () => {
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Close chat"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -248,6 +249,7 @@ const Chatbot = () => {
                   type="submit"
                   disabled={!input.trim() || isLoading}
                   className="w-10 h-10 rounded-full bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/50 flex items-center justify-center hover:bg-neon-cyan hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Send message"
                 >
                   <Send className="w-4 h-4" />
                 </button>

@@ -38,7 +38,7 @@ function App() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-neon-cyan/5 blur-[50px] pointer-events-none" />
         
         <p className="text-gray-400 text-sm z-10">&copy; {new Date().getFullYear()} Kureti Mohana Sambasiva. All rights reserved.</p>
-        <p className="mt-2 text-neon-cyan/50 text-xs tracking-widest uppercase font-mono z-10">Architected by an AI Engineer</p>
+        <p className="mt-2 text-neon-cyan/70 text-xs tracking-widest uppercase font-mono z-10">Architected by an AI Engineer</p>
       </footer>
     </div>
   );
