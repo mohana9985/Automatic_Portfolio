@@ -116,7 +116,7 @@ const Projects = () => {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-0 bg-neon-cyan/20 blur-[50px] group-hover:h-32 transition-all duration-700 ease-in-out pointer-events-none" />
 
               <div className="mb-6 flex flex-wrap gap-4 items-center justify-between">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-[#0f111a] border border-white/5 shadow-inner">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-[var(--bg-elevated)] border border-white/5 shadow-inner">
                   {project.icon}
                 </div>
                 <span className="text-xs font-mono text-gray-400 px-3 py-1 bg-white/5 rounded-full border border-white/10 whitespace-nowrap">{project.date}</span>

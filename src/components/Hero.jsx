@@ -28,7 +28,7 @@ const Hero = () => {
         >
           <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center mb-8">
             <div className="relative group rounded-full p-1 bg-gradient-to-tr from-neon-cyan to-neon-purple shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-[#0f111a]">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-[var(--bg-elevated)]">
                 <picture>
                   <source srcSet={profilePicWebp} type="image/webp" />
                   <img src={profilePic} alt="Kureti Mohana Sambasiva" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="eager" fetchPriority="high" width="224" height="224" />
@@ -88,8 +88,8 @@ const Hero = () => {
            className="relative"
         >
           <div className="glass-panel p-1 rounded-2xl bg-gradient-to-br from-white/10 to-transparent shadow-[0_0_50px_rgba(0,243,255,0.1)]">
-            <div className="bg-[#0f111a] rounded-xl overflow-hidden border border-white/5">
-              <div className="flex items-center px-4 py-3 bg-[#1a1d27] border-b border-white/5 gap-2">
+            <div className="bg-[var(--bg-elevated)] rounded-xl overflow-hidden border border-white/5">
+              <div className="flex items-center px-4 py-3 bg-[var(--bg-header)] border-b border-white/5 gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500/80"></div>

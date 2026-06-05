@@ -15,7 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="bg-[#030014] min-h-screen text-gray-200 font-sans selection:bg-neon-cyan selection:text-black">
+    <div className="bg-[var(--bg-base)] min-h-screen text-gray-200 font-sans selection:bg-neon-cyan selection:text-black">
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <Navbar />
       <main>

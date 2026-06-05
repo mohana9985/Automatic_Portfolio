@@ -89,7 +89,7 @@ const Contact = () => {
 
           <div className="space-y-4">
             <a href={`mailto:${contactEmail}`} className="group flex items-center gap-4 text-gray-300 hover:text-white transition-colors p-4 glass-panel hover:border-neon-cyan/30">
-              <div className="p-3 bg-[#0a0c14] border border-white/5 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
+              <div className="p-3 bg-[var(--bg-card)] border border-white/5 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
                 <Mail className="w-6 h-6 text-neon-cyan" />
               </div>
               <div className="overflow-hidden">
@@ -99,7 +99,7 @@ const Contact = () => {
             </a>
 
             <div className="group flex items-center gap-4 text-gray-300 hover:text-white transition-colors p-4 glass-panel hover:border-neon-cyan/30">
-              <div className="p-3 bg-[#0a0c14] border border-white/5 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
+              <div className="p-3 bg-[var(--bg-card)] border border-white/5 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
                 <Phone className="w-6 h-6 text-neon-cyan" />
               </div>
               <div>
@@ -110,7 +110,7 @@ const Contact = () => {
             </div>
 
             <div className="group flex items-center gap-4 text-gray-300 hover:text-white transition-colors p-4 glass-panel hover:border-neon-cyan/30">
-              <div className="p-3 bg-[#0a0c14] border border-white/5 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
+              <div className="p-3 bg-[var(--bg-card)] border border-white/5 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
                 <MapPin className="w-6 h-6 text-neon-cyan" />
               </div>
               <div>
@@ -143,8 +143,8 @@ const Contact = () => {
         {/* Contact Form Terminal Aesthetic */}
         <div className="md:w-1/2">
           <div className="glass-panel p-1 bg-gradient-to-br from-white/10 to-transparent shadow-[0_0_30px_rgba(157,0,255,0.1)]">
-            <div className="bg-[#0f111a] rounded-xl overflow-hidden border border-white/5">
-              <div className="flex items-center px-4 py-3 bg-[#1a1d27] border-b border-white/5 gap-2">
+            <div className="bg-[var(--bg-elevated)] rounded-xl overflow-hidden border border-white/5">
+              <div className="flex items-center px-4 py-3 bg-[var(--bg-header)] border-b border-white/5 gap-2">
                 <Terminal className="w-4 h-4 text-gray-400" />
                 <span className="text-xs text-gray-400 font-mono">initiate_contact.sh</span>
               </div>
@@ -157,7 +157,7 @@ const Contact = () => {
                       type="text" 
                       name="name"
                       required
-                      className="w-full bg-[#161925] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm"
+                      className="w-full bg-[var(--bg-input)] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm"
                       placeholder="e.g. Satoshi"
                     />
                   </div>
@@ -167,7 +167,7 @@ const Contact = () => {
                       type="email" 
                       name="email"
                       required
-                      className="w-full bg-[#161925] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm"
+                      className="w-full bg-[var(--bg-input)] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm"
                       placeholder="your_email@domain.com"
                     />
                   </div>
@@ -177,7 +177,7 @@ const Contact = () => {
                       required
                       name="message"
                       rows="6"
-                      className="w-full bg-[#161925] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm resize-none"
+                      className="w-full bg-[var(--bg-input)] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm resize-none"
                       placeholder="Enter task definition parameters..."
                     ></textarea>
                   </div>

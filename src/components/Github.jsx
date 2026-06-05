@@ -46,7 +46,7 @@ const Github = () => {
   };
 
   return (
-    <section id="github" className="py-24 px-6 bg-[#030014]/50">
+    <section id="github" className="py-24 px-6 bg-[var(--bg-base)]/50">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-end mb-12">
           <div>
@@ -105,7 +105,7 @@ const Github = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className={`glass-panel p-6 hover:-translate-y-1 transition-transform duration-300 ${highlighted ? 'border-neon-cyan/40 bg-[#0a1128]' : 'border-white/10'}`}
+                  className={`glass-panel p-6 hover:-translate-y-1 transition-transform duration-300 ${highlighted ? 'border-neon-cyan/40 bg-[var(--bg-surface)]' : 'border-white/10'}`}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <a href={repo.html_url} target="_blank" rel="noreferrer" className="group">

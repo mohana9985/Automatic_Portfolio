@@ -80,7 +80,7 @@ Phase 2: The Expert (Senior Engineer Persona)
   ];
 
   return (
-    <section id="prompts" className="py-24 px-6 bg-[#05060f] relative border-y border-white/5">
+    <section id="prompts" className="py-24 px-6 bg-[var(--bg-deep)] relative border-y border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div>
@@ -98,7 +98,7 @@ Phase 2: The Expert (Senior Engineer Persona)
             <motion.div
               key={prompt.id}
               whileHover={{ y: -5 }}
-              className={`glass-panel bg-[#0a0c14] border border-white/5 ${prompt.bgHover} transition-all duration-300 flex flex-col group`}
+              className={`glass-panel bg-[var(--bg-card)] border border-white/5 ${prompt.bgHover} transition-all duration-300 flex flex-col group`}
             >
               <div className="flex justify-between items-center p-4 border-b border-white/5 bg-white/[0.02]">
                 <div className="flex items-center gap-2">

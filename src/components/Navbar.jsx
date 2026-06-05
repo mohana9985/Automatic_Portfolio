@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Cpu, Sparkles } from 'lucide-react';
+import { Menu, X, Cpu, Sparkles, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from '../hooks/useTheme';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
   const cvUrl = import.meta.env.VITE_CV_URL;
 
@@ -72,16 +74,32 @@ const Navbar = () => {
           >
             Download CV
           </a>
+          <button
+            onClick={toggle}
+            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            className="p-2 rounded-full border border-white/20 hover:border-neon-cyan/50 text-gray-400 hover:text-neon-cyan transition-all duration-300"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
         </div>
 
         {/* Mobile Toggle */}
+        <div className="md:hidden flex items-center gap-2">
+          <button
+            onClick={toggle}
+            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            className="p-2 rounded-full border border-white/20 hover:border-neon-cyan/50 text-gray-400 hover:text-neon-cyan transition-all duration-300"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
         <button
-          className="md:hidden text-gray-300 hover:text-white"
+          className="text-gray-300 hover:text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
