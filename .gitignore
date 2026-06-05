@@ -12,11 +12,16 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.pyw
 *.sqlite3
 *.db
 venv/
 env/
 ENV/
+.venv/
+*.egg-info/
+dist/
+.pytest_cache/
 
 # Environment
 .env
@@ -44,8 +49,14 @@ Thumbs.db
 # Graphify
 graphify-out/
 
+# Claude
+.claude/settings.local.json
+
 # Misc
 coverage/
 .cache/
 tmp/
 *.local
+
+# RAG / Knowledge base (raw inputs only — built index committed)
+src/backend/knowledge_raw/KURETI_MOHANA_SAMBASIVA.pdf
