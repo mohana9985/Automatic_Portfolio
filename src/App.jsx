@@ -1,18 +1,22 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Prompts from './components/Prompts';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
+import LoadingScreen from './components/LoadingScreen';
 
 const Github = lazy(() => import('./components/Github'));
 const Contact = lazy(() => import('./components/Contact'));
 const Chatbot = lazy(() => import('./components/Chatbot'));
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <div className="bg-[#030014] min-h-screen text-gray-200 font-sans selection:bg-neon-cyan selection:text-black">
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <Navbar />
       <main>
         <Hero />
