@@ -24,6 +24,8 @@ A premium, neon-themed React portfolio designed to showcase expertise in Generat
 - [Backend Architecture](#️-backend-architecture-srcbackend)
 - [Deployment](#-deployment)
 - [Built With](#️-built-with)
+- [Contributing](#-contributing)
+- [Cold Start Notice](#️-cold-start-notice)
 - [License](#-license)
 
 ---
@@ -246,6 +248,36 @@ cd src/backend && uvicorn main:app --host 0.0.0.0 --port $PORT
 - **AI Engine**: Groq API (LLaMA 3.1)
 - **Email**: Resend API
 - **Hosting**: Vercel (frontend) · Render (backend)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! This project is open source and open to improvements.
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "Add your feature"`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+**Good first contributions:**
+- Add new projects to `Projects.jsx`
+- Improve prompt cards in `Prompts.jsx`
+- Enhance mobile responsiveness
+- Improve RAG knowledge base (`src/backend/knowledge_raw/`)
+
+---
+
+## ❄️ Cold Start Notice
+
+The backend is hosted on **Render's free tier**, which spins down after 15 minutes of inactivity. On first use after inactivity, the server takes **30–60 seconds** to wake up.
+
+To handle this gracefully, the **Chatbot** and **Contact form** automatically display warming-up messages:
+- After 5s → *"Warming up server, please wait..."*
+- After 15s → *"Still waking up, hang tight..."*
+
+The UI stays responsive while the backend warms up in the background.
 
 ---
 
