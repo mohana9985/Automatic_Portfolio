@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Mail, Send, Terminal, Phone, MapPin } from 'lucide-react';
 import { FaLinkedin as Linkedin, FaGithub as GithubIcon } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
   const [formStatus, setFormStatus] = useState('idle');
+  const [warmingUp, setWarmingUp] = useState(null);
+  const warmingTimers = useRef([]);
 
   const linkedinUrl = import.meta.env.VITE_LINKEDIN_URL;
   const githubUrl = import.meta.env.VITE_GITHUB_PROFILE_URL;
@@ -13,6 +15,14 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('sending');
+    warmingTimers.current.push(setTimeout(() => setWarmingUp('Warming up server, please wait...'), 5000));
+    warmingTimers.current.push(setTimeout(() => setWarmingUp('Still waking up, hang tight...'), 15000));
+
+    const clearTimers = () => {
+      warmingTimers.current.forEach(clearTimeout);
+      warmingTimers.current = [];
+      setWarmingUp(null);
+    };
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
@@ -30,6 +40,7 @@ const Contact = () => {
         })
       });
 
+      clearTimers();
       if (response.ok) {
         setFormStatus('success');
         e.target.reset();
@@ -37,6 +48,7 @@ const Contact = () => {
         setFormStatus('error');
       }
     } catch (error) {
+      clearTimers();
       console.error("Form transmission error:", error);
       setFormStatus('error');
     }
@@ -165,12 +177,12 @@ const Contact = () => {
                   </div>
                   
                   <div className="pt-2">
-                    <button 
-                      type="submit" 
+                    <button
+                      type="submit"
                       disabled={formStatus === 'sending' || formStatus === 'success'}
                       className={`w-full py-3 border rounded-lg font-bold uppercase tracking-wider flex justify-center items-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
-                        formStatus === 'error' 
-                          ? 'bg-red-500/10 border-red-500 text-red-500 hover:bg-red-500 hover:text-white' 
+                        formStatus === 'error'
+                          ? 'bg-red-500/10 border-red-500 text-red-500 hover:bg-red-500 hover:text-white'
                           : 'bg-neon-purple/10 border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-white'
                       }`}
                     >
@@ -179,6 +191,9 @@ const Contact = () => {
                       {formStatus === 'success' && 'Payload Received ✓'}
                       {formStatus === 'error' && 'Transmission Failed ✗'}
                     </button>
+                    {warmingUp && (
+                      <p className="text-xs text-yellow-400 text-center mt-2 animate-pulse">{warmingUp}</p>
+                    )}
                   </div>
                 </form>
               </div>

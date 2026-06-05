@@ -60,7 +60,15 @@ const Chatbot = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [warmingUp, setWarmingUp] = useState(null);
+  const warmingTimers = useRef([]);
   const messagesEndRef = useRef(null);
+
+  const clearWarmingTimers = () => {
+    warmingTimers.current.forEach(clearTimeout);
+    warmingTimers.current = [];
+    setWarmingUp(null);
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -80,6 +88,9 @@ const Chatbot = () => {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
+
+    warmingTimers.current.push(setTimeout(() => setWarmingUp('Warming up AI server, please wait...'), 5000));
+    warmingTimers.current.push(setTimeout(() => setWarmingUp('Still waking up, hang tight...'), 15000));
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
@@ -101,7 +112,7 @@ const Chatbot = () => {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
 
-      // Stop loading spinner and add empty assistant message placeholder
+      clearWarmingTimers();
       setIsLoading(false);
       setMessages(prev => [
         ...prev,
@@ -140,6 +151,7 @@ const Chatbot = () => {
 
     } catch (error) {
       console.error('Error communicating with chatbot API:', error);
+      clearWarmingTimers();
       setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I'm having trouble connecting right now. Please try again later.", isTyping: false }]);
       setIsLoading(false);
     }
@@ -213,8 +225,9 @@ const Chatbot = () => {
                   <div className="w-8 h-8 rounded-full bg-neon-cyan/20 border border-neon-cyan/30 flex items-center justify-center">
                     <Bot className="w-4 h-4 text-neon-cyan" />
                   </div>
-                  <div className="p-4 rounded-2xl rounded-tl-none bg-white/5 border border-white/10 text-gray-300">
-                    <Loader2 className="w-4 h-4 animate-spin text-neon-cyan" />
+                  <div className="p-4 rounded-2xl rounded-tl-none bg-white/5 border border-white/10 text-gray-300 flex items-center gap-2">
+                    <Loader2 className="w-4 h-4 animate-spin text-neon-cyan flex-shrink-0" />
+                    {warmingUp && <span className="text-xs text-yellow-400 animate-pulse">{warmingUp}</span>}
                   </div>
                 </div>
               )}
