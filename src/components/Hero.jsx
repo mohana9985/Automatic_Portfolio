@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import profilePic from '../assets/profile.jpg';
+import profilePicWebp from '../assets/profile.webp';
 
 const Hero = () => {
   const codeSnippet = `const AIEngineer = {
@@ -28,7 +29,10 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center mb-8">
             <div className="relative group rounded-full p-1 bg-gradient-to-tr from-neon-cyan to-neon-purple shrink-0">
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-[#0f111a]">
-                <img src={profilePic} alt="Kureti Mohana Sambasiva" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <picture>
+                  <source srcSet={profilePicWebp} type="image/webp" />
+                  <img src={profilePic} alt="Kureti Mohana Sambasiva" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="eager" fetchPriority="high" width="112" height="112" />
+                </picture>
               </div>
               <div className="absolute inset-0 bg-gradient-to-tr from-neon-cyan to-neon-purple rounded-full blur-md opacity-40 group-hover:opacity-75 transition-opacity duration-500 -z-10"></div>
             </div>

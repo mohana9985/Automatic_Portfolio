@@ -149,6 +149,20 @@ Reduced initial JS bundle by **32%** by lazy loading below-the-fold components (
 | `Github.jsx` | eager | lazy | deferred |
 | `Contact.jsx` | eager | lazy | deferred |
 
+### Image & Performance Optimization
+
+- `profile.jpg` converted to WebP — **267 kB → 37 kB (86% reduction)**
+- `<picture>` tag with WebP source + JPEG fallback for browser compatibility
+- `fetchpriority="high"` on LCP image for faster Largest Contentful Paint
+- Vendor code splitting (`react`, `framer-motion`, `lucide-react`/`react-icons`) for parallel chunk loading
+- `background:#030014` inlined in `index.html` to eliminate black flash before React mounts
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Profile image size | 267 kB | 37 kB |
+| LCP target | ~3.6s | improved |
+| Black screen on load | yes | no |
+
 ---
 
 ## ⚙️ Backend Architecture (src/backend)
@@ -169,6 +183,12 @@ Built as a lightweight FastAPI server powering the AI chatbot and contact form.
 - `RESEND_FROM_EMAIL` — sender label shown in the email "From" field
 - `GROQ_API_KEY` — authenticates with the Groq API
 - `RESEND_API_KEY` — authenticates with the Resend email API
+
+**Chat settings:**
+- Model: `llama-3.1-8b-instant` (default, overridable per request)
+- Temperature: `0.3` — keeps responses focused and consistent
+- Max tokens: `1024`
+- Context window: last 10 messages
 
 ---
 
