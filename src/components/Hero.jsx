@@ -65,7 +65,7 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-4">
             <a 
               href="#projects" 
-              className={`group relative px-8 py-3 font-semibold rounded-lg overflow-hidden transition-all duration-300 ${theme === 'light' ? 'bg-slate-900 text-white hover:shadow-[0_0_20px_rgba(15,23,42,0.3)]' : 'bg-white text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]'}`}
+              className={`group relative px-8 py-3 font-semibold rounded-lg overflow-hidden transition-all duration-300 ${theme === 'light' ? 'bg-sky-50 border border-neon-cyan text-neon-cyan hover:shadow-[0_0_20px_rgba(8,145,178,0.3)]' : 'bg-white text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]'}`}
             >
               <div className="absolute inset-0 w-0 bg-neon-cyan transition-all duration-[250ms] ease-out group-hover:w-full"></div>
               <span className={`relative flex items-center gap-2 ${theme === 'light' ? 'group-hover:text-black' : 'group-hover:text-black'}`}>

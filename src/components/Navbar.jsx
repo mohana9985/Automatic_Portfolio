@@ -46,7 +46,7 @@ const Navbar = () => {
           </div>
           
           <div className="flex flex-col justify-center">
-            <span className={`font-extrabold text-xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${theme === 'light' ? 'from-slate-800 to-slate-500' : 'from-white to-gray-400'} group-hover:from-neon-cyan group-hover:to-neon-purple transition-all duration-500 leading-tight`}>
+            <span className={`font-extrabold text-xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${theme === 'light' ? 'from-sky-600 to-violet-600' : 'from-white to-gray-400'} group-hover:from-neon-cyan group-hover:to-neon-purple transition-all duration-500 leading-tight`}>
               KMSS
             </span>
             <span className="text-[0.6rem] font-mono text-neon-cyan tracking-[0.2em] uppercase opacity-80 leading-none mt-[2px]">

@@ -18,9 +18,10 @@
 }
 
 [data-theme="light"] {
-  --color-dark-bg:   #f8fafc;
-  --color-dark-card: rgba(15, 23, 42, 0.04);
-  --color-neon-cyan: #0891b2;
+  --color-dark-bg:     #f8fafc;
+  --color-dark-card:   rgba(100, 116, 139, 0.06);
+  --color-neon-cyan:   #0891b2;
+  --color-neon-purple: #7c3aed;
   --bg-base:     #f8fafc;
   --bg-deep:     #f1f5f9;
   --bg-elevated: #ffffff;
@@ -47,45 +48,45 @@
 }
 
 /* ── Light theme overrides ─────────────────────────────── */
-[data-theme="light"] body { color: #0f172a; }
+[data-theme="light"] body { color: #334155; }
 
-/* Text */
-[data-theme="light"] .text-gray-100 { color: #0f172a !important; }
+/* Text — dark slate, not dark-theme navy */
+[data-theme="light"] .text-gray-100 { color: #1e293b !important; }
 [data-theme="light"] .text-gray-200 { color: #1e293b !important; }
-[data-theme="light"] .text-gray-300 { color: #334155 !important; }
+[data-theme="light"] .text-gray-300 { color: #475569 !important; }
 [data-theme="light"] .text-gray-400 { color: #64748b !important; }
-[data-theme="light"] .text-white    { color: #0f172a !important; }
-[data-theme="light"] .hover\:text-white:hover { color: #0f172a !important; }
-[data-theme="light"] .group:hover .group-hover\:text-white { color: #0f172a !important; }
+[data-theme="light"] .text-white    { color: #1e293b !important; }
+[data-theme="light"] .hover\:text-white:hover { color: #1e293b !important; }
+[data-theme="light"] .group:hover .group-hover\:text-white { color: #1e293b !important; }
 
-/* Backgrounds */
-[data-theme="light"] .bg-white\/5         { background-color: rgba(15,23,42,0.05) !important; }
-[data-theme="light"] .bg-white\/10        { background-color: rgba(15,23,42,0.08) !important; }
-[data-theme="light"] .bg-white\/\[0\.02\] { background-color: rgba(15,23,42,0.02) !important; }
-[data-theme="light"] .bg-black\/50        { background-color: rgba(15,23,42,0.06) !important; }
-[data-theme="light"] .hover\:bg-white\/5:hover  { background-color: rgba(15,23,42,0.05) !important; }
-[data-theme="light"] .hover\:bg-white\/10:hover { background-color: rgba(15,23,42,0.08) !important; }
+/* Backgrounds — slate-tinted, not dark-theme shades */
+[data-theme="light"] .bg-white\/5         { background-color: rgba(100,116,139,0.06) !important; }
+[data-theme="light"] .bg-white\/10        { background-color: rgba(100,116,139,0.10) !important; }
+[data-theme="light"] .bg-white\/\[0\.02\] { background-color: rgba(100,116,139,0.03) !important; }
+[data-theme="light"] .bg-black\/50        { background-color: rgba(100,116,139,0.08) !important; }
+[data-theme="light"] .hover\:bg-white\/5:hover  { background-color: rgba(100,116,139,0.08) !important; }
+[data-theme="light"] .hover\:bg-white\/10:hover { background-color: rgba(100,116,139,0.12) !important; }
 
-/* Borders */
-[data-theme="light"] .border-white\/5  { border-color: rgba(15,23,42,0.08) !important; }
-[data-theme="light"] .border-white\/10 { border-color: rgba(15,23,42,0.12) !important; }
-[data-theme="light"] .border-white\/20 { border-color: rgba(15,23,42,0.2)  !important; }
-[data-theme="light"] .hover\:border-white\/40:hover { border-color: rgba(15,23,42,0.3) !important; }
+/* Borders — light slate */
+[data-theme="light"] .border-white\/5  { border-color: #e2e8f0 !important; }
+[data-theme="light"] .border-white\/10 { border-color: #cbd5e1 !important; }
+[data-theme="light"] .border-white\/20 { border-color: #94a3b8 !important; }
+[data-theme="light"] .hover\:border-white\/40:hover { border-color: #64748b !important; }
 
-/* Glass panel */
+/* Glass panel — pure white card */
 [data-theme="light"] .glass-panel {
-  background: rgba(255,255,255,0.9) !important;
-  border-color: rgba(15,23,42,0.1) !important;
-  box-shadow: 0 1px 4px rgba(15,23,42,0.06), 0 4px 16px rgba(15,23,42,0.04);
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(100,116,139,0.1), 0 1px 2px rgba(100,116,139,0.06);
 }
 
-/* Gradient wrappers — terminal/form card borders */
+/* Gradient card wrappers */
 [data-theme="light"] .bg-gradient-to-br.from-white\/10 {
-  background: rgba(15,23,42,0.04) !important;
+  background: linear-gradient(to bottom right, rgba(100,116,139,0.06), transparent) !important;
 }
 
 /* Text glow */
-[data-theme="light"] .text-glow { text-shadow: 0 0 10px rgba(8,145,178,0.4); }
+[data-theme="light"] .text-glow { text-shadow: 0 0 10px rgba(8,145,178,0.35); }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar       { width: 8px; }
