@@ -93,7 +93,7 @@ const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-                <div className="ml-2 text-xs text-gray-500 font-mono">agent.js</div>
+                <div className="ml-2 text-xs text-gray-400 font-mono">agent.js</div>
               </div>
               <div className="p-6 font-mono text-sm leading-relaxed overflow-x-auto text-gray-300">
                 <pre>

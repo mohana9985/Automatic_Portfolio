@@ -113,7 +113,7 @@ const Github = () => {
                         {highlighted && <span className="text-[10px] bg-neon-cyan/20 text-neon-cyan px-2 py-0.5 rounded-full uppercase tracking-wider border border-neon-cyan/50">AI Focus</span>}
                       </h3>
                     </a>
-                    <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white">
+                    <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white" aria-label={`View ${repo.name} on GitHub`}>
                       <ExternalLink className="w-5 h-5" />
                     </a>
                   </div>
@@ -128,10 +128,10 @@ const Github = () => {
                         <div className={`w-3 h-3 rounded-full ${repo.language === 'Python' ? 'bg-blue-500' : repo.language === 'JavaScript' ? 'bg-yellow-400' : 'bg-gray-400'}`} />
                         {repo.language || 'Code'}
                       </span>
-                      <span className="flex items-center gap-1 text-gray-500">
+                      <span className="flex items-center gap-1 text-gray-400">
                         <Star className="w-4 h-4" /> {repo.stargazers_count}
                       </span>
-                      <span className="flex items-center gap-1 text-gray-500">
+                      <span className="flex items-center gap-1 text-gray-400">
                         <GitFork className="w-4 h-4" /> {repo.forks_count}
                       </span>
                     </div>

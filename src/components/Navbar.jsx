@@ -34,7 +34,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Brand */}
-        <a href="#" className="flex items-center gap-3 group" aria-label="Home">
+        <a href="#" className="flex items-center gap-3 group">
           <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 border border-white/10 group-hover:border-neon-cyan/50 transition-all duration-500 overflow-visible group-hover:shadow-[0_0_20px_rgba(0,243,255,0.3)]">
             <div className="absolute inset-0 bg-neon-cyan/20 blur-xl group-hover:bg-neon-cyan/40 transition-colors duration-500 rounded-xl"></div>
             

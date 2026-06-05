@@ -265,6 +265,7 @@ const Chatbot = () => {
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
         className="w-14 h-14 rounded-full bg-gradient-to-r from-neon-cyan to-neon-purple flex items-center justify-center text-black shadow-[0_0_30px_rgba(0,243,255,0.4)] hover:shadow-[0_0_40px_rgba(0,243,255,0.6)] transition-all z-50 relative"
+        aria-label={isOpen ? 'Close AI assistant' : 'Open AI assistant'}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

@@ -93,7 +93,7 @@ const Experience = () => {
                 <h3 className="text-2xl font-bold text-gray-200">{exp.role}</h3>
                 <h4 className="text-lg text-neon-purple font-medium mb-3">{exp.company}</h4>
                 
-                <div className="flex items-center gap-4 text-sm text-gray-500 font-mono flex-wrap">
+                <div className="flex items-center gap-4 text-sm text-gray-400 font-mono flex-wrap">
                   <span className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">
                     <Calendar className="w-3.5 h-3.5 text-neon-purple"/> {exp.duration}
                   </span>
@@ -128,7 +128,7 @@ const Experience = () => {
                   <h3 className="text-2xl font-bold text-gray-200">{edu.degree}</h3>
                   <h4 className="text-lg text-neon-cyan font-medium mb-3">{edu.institute}</h4>
                   
-                  <div className="flex items-center gap-4 text-sm text-gray-500 font-mono flex-wrap">
+                  <div className="flex items-center gap-4 text-sm text-gray-400 font-mono flex-wrap">
                     <span className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">
                       <Calendar className="w-3.5 h-3.5 text-neon-cyan"/> {edu.duration}
                     </span>
@@ -160,7 +160,7 @@ const Experience = () => {
                   <h3 className="text-2xl font-bold text-gray-200">{train.name}</h3>
                   <h4 className="text-lg text-neon-cyan font-medium mb-3">{train.org}</h4>
                   
-                  <div className="flex items-center gap-4 text-sm text-gray-500 font-mono flex-wrap">
+                  <div className="flex items-center gap-4 text-sm text-gray-400 font-mono flex-wrap">
                     <span className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">
                       <Calendar className="w-3.5 h-3.5 text-neon-cyan"/> {train.duration}
                     </span>

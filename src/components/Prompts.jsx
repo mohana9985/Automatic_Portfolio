@@ -105,7 +105,7 @@ Phase 2: The Expert (Senior Engineer Persona)
                   <span className={prompt.color}>{prompt.icon}</span>
                   <div>
                     <h3 className="text-sm font-semibold text-gray-200">{prompt.title}</h3>
-                    <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold">{prompt.category}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">{prompt.category}</span>
                   </div>
                 </div>
                 <button

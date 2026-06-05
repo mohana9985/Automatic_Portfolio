@@ -93,7 +93,7 @@ const Contact = () => {
                 <Mail className="w-6 h-6 text-neon-cyan" />
               </div>
               <div className="overflow-hidden">
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Email</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Email</p>
                 <p className="font-medium text-sm sm:text-base group-hover:text-neon-cyan transition-colors truncate">Direct Inquiry</p>
               </div>
             </a>
@@ -103,7 +103,7 @@ const Contact = () => {
                 <Phone className="w-6 h-6 text-neon-cyan" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Phone</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider font-bold">Phone</p>
                 <p className="font-medium text-sm sm:text-base group-hover:text-neon-cyan transition-colors truncate">+91 9985111555</p>
                 <p className="font-medium text-sm sm:text-base group-hover:text-neon-cyan transition-colors truncate">+971 522309155</p>
               </div>
@@ -114,7 +114,7 @@ const Contact = () => {
                 <MapPin className="w-6 h-6 text-neon-cyan" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Location</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider font-bold">Location</p>
                 <p className="font-medium text-sm sm:text-base group-hover:text-neon-cyan transition-colors truncate">India & Dubai</p>
               </div>
             </div>
@@ -145,14 +145,14 @@ const Contact = () => {
           <div className="glass-panel p-1 bg-gradient-to-br from-white/10 to-transparent shadow-[0_0_30px_rgba(157,0,255,0.1)]">
             <div className="bg-[#0f111a] rounded-xl overflow-hidden border border-white/5">
               <div className="flex items-center px-4 py-3 bg-[#1a1d27] border-b border-white/5 gap-2">
-                <Terminal className="w-4 h-4 text-gray-500" />
-                <span className="text-xs text-gray-500 font-mono">initiate_contact.sh</span>
+                <Terminal className="w-4 h-4 text-gray-400" />
+                <span className="text-xs text-gray-400 font-mono">initiate_contact.sh</span>
               </div>
               
               <div className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-gray-500 font-bold mb-2">Identifier (Name)</label>
+                    <label className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Identifier (Name)</label>
                     <input 
                       type="text" 
                       name="name"
@@ -162,7 +162,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-gray-500 font-bold mb-2">Endpoint (Email)</label>
+                    <label className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Endpoint (Email)</label>
                     <input 
                       type="email" 
                       name="email"
@@ -172,7 +172,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-gray-500 font-bold mb-2">Payload (Message)</label>
+                    <label className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Payload (Message)</label>
                     <textarea 
                       required
                       name="message"
