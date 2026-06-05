@@ -17,6 +17,7 @@ const Github = () => {
 
   useEffect(() => {
     const fetchRepos = async () => {
+      if (!GITHUB_USERNAME) { setLoading(false); return; }
       try {
         const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
         if (!response.ok) throw new Error('Failed to fetch repositories');
