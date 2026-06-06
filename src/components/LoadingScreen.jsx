@@ -5,10 +5,10 @@ const LoadingScreen = ({ onComplete }) => {
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 400);
-    const t2 = setTimeout(() => setPhase(2), 1000);
-    const t3 = setTimeout(() => setPhase(3), 1800);
-    const t4 = setTimeout(() => onComplete(), 2600);
+    const t1 = setTimeout(() => setPhase(1), 100);
+    const t2 = setTimeout(() => setPhase(2), 300);
+    const t3 = setTimeout(() => setPhase(3), 550);
+    const t4 = setTimeout(() => onComplete(), 800);
     return () => [t1, t2, t3, t4].forEach(clearTimeout);
   }, [onComplete]);
 
