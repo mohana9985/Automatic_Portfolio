@@ -51,6 +51,7 @@ graphify-out/
 
 # Claude
 .claude/
+CLAUDE.md
 
 # Misc
 coverage/

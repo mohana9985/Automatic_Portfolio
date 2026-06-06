@@ -138,7 +138,7 @@ Automatic_Portfolio/
 
 - **`Navbar.jsx`** — Responsive top navigation with smooth-scroll links, mobile hamburger menu, and a CV download button (URL from `VITE_CV_URL`).
 - **`Hero.jsx`** — Landing section with profile picture, titles, a mock code terminal, and call-to-action buttons.
-- **`LoadingScreen.jsx`** — Branded loading screen displayed on first visit. Animates name → role → spinner, then fades out. Prevents black flash on Render cold start.
+- **`LoadingScreen.jsx`** — Branded loading screen displayed on first visit. Animates name → role → spinner, then fades out after ~2.6s. Prevents black flash before React mounts.
 - **`Projects.jsx`** — Grid of featured projects. AI-focused projects get a pulsing neon highlight.
 - **`Prompts.jsx`** — Copyable AI prompt cards showcasing prompt engineering examples.
 - **`Skills.jsx`** — Categorized skills (AI & Models, Frameworks, Backend, DevOps) with glowing icons.
@@ -169,6 +169,7 @@ Reduced initial JS bundle by **32%** by lazy loading below-the-fold components (
 - `react-icons` removed — replaced with inline SVGs (eliminates icon library from bundle)
 - `background:#030014` inlined in `index.html` to eliminate black flash before React mounts
 - `<link rel="preconnect">` for GitHub API and Render backend to reduce DNS + TCP handshake time
+- Silent `GET /` pre-warm ping fired on app mount (`App.jsx`) — warms Render backend before user needs chatbot
 
 | Metric | Before | After |
 |--------|--------|-------|
@@ -271,9 +272,16 @@ Contributions are welcome! This project is open source and open to improvements.
 
 ## ❄️ Cold Start Notice
 
-The backend is hosted on **Render's free tier**, which spins down after 15 minutes of inactivity. On first use after inactivity, the server takes **30–60 seconds** to wake up.
+The backend is hosted on **Render's free tier**, which spins down after 15 minutes of inactivity.
 
-To handle this gracefully, the **Chatbot** and **Contact form** automatically display warming-up messages:
+**Mitigations in place (cold start effectively eliminated):**
+
+| Method | How it works |
+|--------|-------------|
+| **UptimeRobot monitor** | Pings `GET /` every 5 minutes — Render never idles long enough to sleep |
+| **Frontend pre-warm ping** | `App.jsx` fires a silent `GET /` on every page mount — backend warms up while the visitor reads the Hero section |
+
+In the unlikely event the backend is still cold, the **Chatbot** and **Contact form** display graceful waiting messages:
 - After 5s → *"Warming up server, please wait..."*
 - After 15s → *"Still waking up, hang tight..."*
 
