@@ -18,10 +18,27 @@
   <script>(function(){var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
   <link rel="preconnect" href="https://api.github.com" />
   <link rel="dns-prefetch" href="https://api.github.com" />
-  <style>html,body{background:#030014}</style>
+  <style>
+    html,body{background:#030014;margin:0}
+    #splash{position:fixed;inset:0;background:#030014;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:9999;transition:opacity 0.4s}
+    #splash.hide{opacity:0;pointer-events:none}
+    #splash-name{font-family:system-ui,sans-serif;font-size:clamp(1.2rem,5vw,2.2rem);font-weight:700;background:linear-gradient(90deg,#00f3ff,#9d00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;padding:0 16px}
+    #splash-role{font-family:monospace;font-size:clamp(0.6rem,2.5vw,0.8rem);color:#00f3ff;opacity:0.7;letter-spacing:0.2em;text-transform:uppercase}
+    #splash-spin{width:20px;height:20px;border:2px solid rgba(0,243,255,0.2);border-top-color:#00f3ff;border-radius:50%;animation:spin 0.8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    [data-theme="light"] #splash{background:#f8fafc}
+    [data-theme="light"] #splash-name{background:linear-gradient(90deg,#0891b2,#7c3aed);-webkit-background-clip:text;background-clip:text}
+    [data-theme="light"] #splash-role{color:#0891b2}
+    [data-theme="light"] #splash-spin{border-color:rgba(8,145,178,0.2);border-top-color:#0891b2}
+  </style>
 </head>
 
 <body style="background:#030014">
+  <div id="splash">
+    <div id="splash-name">Kureti Mohana SambaSiva</div>
+    <div id="splash-role">AI Engineer · Gen-AI Developer</div>
+    <div id="splash-spin"></div>
+  </div>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
