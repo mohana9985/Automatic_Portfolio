@@ -6,6 +6,7 @@ import Prompts from './components/Prompts';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import LoadingScreen from './components/LoadingScreen';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const Github = lazy(() => import('./components/Github'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -13,6 +14,12 @@ const Chatbot = lazy(() => import('./components/Chatbot'));
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  // Silently wake up the Render backend on page load to reduce cold start delay
+  React.useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    if (apiUrl) fetch(`${apiUrl}/`).catch(() => {});
+  }, []);
 
   return (
     <div className="bg-[var(--bg-base)] min-h-screen text-gray-200 font-sans selection:bg-neon-cyan selection:text-black">
@@ -23,15 +30,19 @@ function App() {
         <Projects />
         <Prompts />
         <Skills />
-        <Suspense fallback={null}>
-          <Github />
-          <Experience />
-          <Contact />
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={null}>
+            <Github />
+            <Experience />
+            <Contact />
+          </Suspense>
+        </ErrorBoundary>
       </main>
-      <Suspense fallback={null}>
-        <Chatbot />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <Chatbot />
+        </Suspense>
+      </ErrorBoundary>
       
       <footer className="py-8 border-t border-white/10 text-center flex flex-col items-center justify-center relative overflow-hidden">
         {/* Subtle background glow for footer */}
