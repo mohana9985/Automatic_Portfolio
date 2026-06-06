@@ -1,24 +1,18 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Projects from './components/Projects';
-import Prompts from './components/Prompts';
-import Skills from './components/Skills';
-import Experience from './components/Experience';
 import LoadingScreen from './components/LoadingScreen';
 
+const Projects = lazy(() => import('./components/Projects'));
+const Prompts = lazy(() => import('./components/Prompts'));
+const Skills = lazy(() => import('./components/Skills'));
+const Experience = lazy(() => import('./components/Experience'));
 const Github = lazy(() => import('./components/Github'));
 const Contact = lazy(() => import('./components/Contact'));
 const Chatbot = lazy(() => import('./components/Chatbot'));
 
-const BACKEND_URL = import.meta.env.VITE_API_URL || 'https://automatic-portfolio.onrender.com';
-
 function App() {
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`${BACKEND_URL}/`, { method: 'GET' }).catch(() => {});
-  }, []);
 
   return (
     <div className="bg-[var(--bg-base)] min-h-screen text-gray-200 font-sans selection:bg-neon-cyan selection:text-black">
@@ -26,12 +20,12 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Projects />
-        <Prompts />
-        <Skills />
         <Suspense fallback={null}>
-          <Github />
+          <Projects />
+          <Prompts />
+          <Skills />
           <Experience />
+          <Github />
           <Contact />
         </Suspense>
       </main>

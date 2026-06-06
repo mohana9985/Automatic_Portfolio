@@ -19,7 +19,7 @@ const Github = () => {
     const fetchRepos = async () => {
       if (!GITHUB_USERNAME) { setLoading(false); return; }
       try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=10`);
         if (!response.ok) throw new Error('Failed to fetch repositories');
         const data = await response.json();
         

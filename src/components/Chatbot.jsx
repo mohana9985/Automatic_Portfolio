@@ -75,10 +75,14 @@ const Chatbot = () => {
   };
 
   useEffect(() => {
-    if (isOpen) {
-      scrollToBottom();
-    }
+    if (isOpen) scrollToBottom();
   }, [messages, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://automatic-portfolio.onrender.com';
+    fetch(`${apiUrl}/`, { method: 'GET' }).catch(() => {});
+  }, [isOpen]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
