@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LoadingScreen from './components/LoadingScreen';
@@ -13,6 +13,15 @@ const Chatbot = lazy(() => import('./components/Chatbot'));
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const el = document.getElementById('splash');
+    if (el) {
+      el.classList.add('hide');
+      const t = setTimeout(() => el.remove(), 400);
+      return () => clearTimeout(t);
+    }
+  }, []);
 
   return (
     <div className="bg-[var(--bg-base)] min-h-screen text-gray-200 font-sans selection:bg-neon-cyan selection:text-black">
