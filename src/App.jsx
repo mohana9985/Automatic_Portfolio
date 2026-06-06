@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
@@ -11,8 +11,14 @@ const Github = lazy(() => import('./components/Github'));
 const Contact = lazy(() => import('./components/Contact'));
 const Chatbot = lazy(() => import('./components/Chatbot'));
 
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'https://automatic-portfolio.onrender.com';
+
 function App() {
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${BACKEND_URL}/`, { method: 'GET' }).catch(() => {});
+  }, []);
 
   return (
     <div className="bg-[var(--bg-base)] min-h-screen text-gray-200 font-sans selection:bg-neon-cyan selection:text-black">
