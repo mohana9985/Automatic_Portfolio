@@ -82,15 +82,16 @@ const Skills = () => {
               className={`glass-panel p-8 border ${category.color} ${category.shadow} backdrop-blur-xl group hover:border-opacity-100 transition-all duration-300`}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-black/40 rounded-xl">{category.icon}</div>
+                <div className="p-3 rounded-xl" style={{ background: 'var(--icon-bg)' }}>{category.icon}</div>
                 <h3 className="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">{category.title}</h3>
               </div>
-              
+
               <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill) => (
-                  <span 
-                    key={skill} 
-                    className="px-4 py-2 bg-black/50 border border-white/5 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors cursor-default"
+                  <span
+                    key={skill}
+                    className="px-4 py-2 border border-white/5 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors cursor-default"
+                    style={{ background: 'var(--tag-bg)', color: 'var(--tag-color)' }}
                   >
                     {skill}
                   </span>
