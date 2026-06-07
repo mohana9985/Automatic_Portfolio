@@ -8,7 +8,7 @@ const LoadingScreen = ({ onComplete }) => {
     const t1 = setTimeout(() => setPhase(1), 100);
     const t2 = setTimeout(() => setPhase(2), 300);
     const t3 = setTimeout(() => setPhase(3), 550);
-    const t4 = setTimeout(() => onComplete(), 800);
+    const t4 = setTimeout(() => onComplete(), 550);
     return () => [t1, t2, t3, t4].forEach(clearTimeout);
   }, [onComplete]);
 

@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LoadingScreen from './components/LoadingScreen';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const Projects = lazy(() => import('./components/Projects'));
 const Prompts = lazy(() => import('./components/Prompts'));
@@ -29,18 +30,22 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Suspense fallback={null}>
-          <Projects />
-          <Prompts />
-          <Skills />
-          <Experience />
-          <Github />
-          <Contact />
-        </Suspense>
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <Projects />
+            <Prompts />
+            <Skills />
+            <Experience />
+            <Github />
+            <Contact />
+          </Suspense>
+        </ErrorBoundary>
       </main>
-      <Suspense fallback={null}>
-        <Chatbot />
-      </Suspense>
+      <ErrorBoundary fallback={null}>
+        <Suspense fallback={null}>
+          <Chatbot />
+        </Suspense>
+      </ErrorBoundary>
       
       <footer className="py-8 border-t border-white/10 text-center flex flex-col items-center justify-center relative overflow-hidden">
         {/* Subtle background glow for footer */}
