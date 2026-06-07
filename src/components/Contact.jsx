@@ -152,31 +152,37 @@ const Contact = () => {
               <div className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Identifier (Name)</label>
-                    <input 
-                      type="text" 
+                    <label htmlFor="contact-name" className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Identifier (Name)</label>
+                    <input
+                      id="contact-name"
+                      type="text"
                       name="name"
                       required
+                      autoComplete="name"
                       className="w-full bg-[var(--bg-input)] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm"
                       placeholder="e.g. Satoshi"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Endpoint (Email)</label>
-                    <input 
-                      type="email" 
+                    <label htmlFor="contact-email" className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Endpoint (Email)</label>
+                    <input
+                      id="contact-email"
+                      type="email"
                       name="email"
                       required
+                      autoComplete="email"
                       className="w-full bg-[var(--bg-input)] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm"
                       placeholder="your_email@domain.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Payload (Message)</label>
-                    <textarea 
+                    <label htmlFor="contact-message" className="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Payload (Message)</label>
+                    <textarea
+                      id="contact-message"
                       required
                       name="message"
                       rows="6"
+                      autoComplete="off"
                       className="w-full bg-[var(--bg-input)] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all font-mono text-sm resize-none"
                       placeholder="Enter task definition parameters..."
                     ></textarea>
