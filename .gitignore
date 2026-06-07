@@ -59,6 +59,10 @@ coverage/
 tmp/
 *.local
 
+# Screenshots
+Screenshot*.png
+Screenshot*.jpg
+
 # Security
 *.pem
 *.key

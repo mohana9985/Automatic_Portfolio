@@ -1,6 +1,6 @@
 # Automatic Portfolio
 
-A premium, neon-themed React portfolio designed to showcase expertise in Generative AI, LangGraph, LLMs, and modern full-stack development. Features a streaming AI chatbot, live GitHub integration, dynamic contact form, and smooth animations powered by Tailwind CSS and Framer Motion.
+A premium, neon-themed React portfolio designed to showcase expertise in Generative AI, LangGraph, LLMs, and modern full-stack development. Features a streaming AI chatbot, live GitHub integration, dynamic contact form, smooth animations powered by Tailwind CSS and Framer Motion, and a full Neo Frost light theme.
 
 **Live:** [www.kuretimohana.dev](https://www.kuretimohana.dev)
 
@@ -19,6 +19,7 @@ A premium, neon-themed React portfolio designed to showcase expertise in Generat
   - [2. Configure Environment Variables](#2-configure-environment-variables)
   - [3. Set Up the AI Backend](#3-set-up-the-ai-backend)
   - [4. Set Up the Frontend](#4-set-up-the-frontend)
+- [System Architecture](#️-system-architecture)
 - [Project Structure](#-project-structure)
 - [Frontend Components](#-frontend-components-srccomponents)
 - [Backend Architecture](#️-backend-architecture-srcbackend)
@@ -101,6 +102,51 @@ Frontend will be available at `http://localhost:5173`.
 
 ---
 
+## 🏗️ System Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        USER BROWSER                         │
+│                                                             │
+│  index.html ──► HTML/CSS Splash (instant, no JS)           │
+│       │                                                     │
+│       ▼                                                     │
+│  React SPA (Vercel CDN)                                     │
+│  ├── Navbar / Hero              ← eager loaded              │
+│  ├── Projects / Prompts /                                   │
+│  │   Skills / Experience /                                  │
+│  │   Github / Contact           ← React.lazy() + Suspense  │
+│  └── Chatbot                    ← React.lazy() + Suspense  │
+│       │                                                     │
+│       │  POST /chat  (streaming)                            │
+│       │  POST /contact                                      │
+│       ▼                                                     │
+│  FastAPI Backend (Render)                                   │
+│  ├── /chat  ──► Groq API (LLaMA 3.1-8b-instant)           │
+│  └── /contact ──► Resend API (email delivery)              │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│                     LOAD SEQUENCE                           │
+│                                                             │
+│  1. HTML splash renders         (0ms  — before JS)         │
+│  2. React mounts, splash hides  (~100ms)                   │
+│  3. LoadingScreen animates      (100ms → 550ms)            │
+│  4. Hero + Navbar paint         (~550ms)                   │
+│  5. Lazy chunks load            (background, on scroll)    │
+│  6. User opens chatbot          → pre-warm ping fires      │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│                  KEEP-ALIVE STRATEGY                        │
+│                                                             │
+│  UptimeRobot ──► GET / every 13min ──► Render (never sleeps)│
+│  User opens chatbot ──► silent GET / ──► extra warm buffer │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 📁 Project Structure
 
 ```text
@@ -138,7 +184,8 @@ Automatic_Portfolio/
 
 - **`Navbar.jsx`** — Responsive top navigation with smooth-scroll links, mobile hamburger menu, and a CV download button (URL from `VITE_CV_URL`).
 - **`Hero.jsx`** — Landing section with profile picture, titles, a mock code terminal, and call-to-action buttons.
-- **`LoadingScreen.jsx`** — Branded loading screen displayed on first visit. Animates name → role → spinner, then fades out after ~2.6s. Prevents black flash before React mounts.
+- **`LoadingScreen.jsx`** — Branded loading screen displayed on first visit. Animates name → role → spinner, then fades out after ~550ms.
+- **`ErrorBoundary.jsx`** — Class component wrapping all lazy `Suspense` blocks. Catches chunk load failures (network errors, bad deploys) and renders `null` instead of crashing the app.
 - **`Projects.jsx`** — Grid of featured projects. AI-focused projects get a pulsing neon highlight.
 - **`Prompts.jsx`** — Copyable AI prompt cards showcasing prompt engineering examples.
 - **`Skills.jsx`** — Categorized skills (AI & Models, Frameworks, Backend, DevOps) with glowing icons.
@@ -147,7 +194,7 @@ Automatic_Portfolio/
 - **`Contact.jsx`** *(lazy loaded)* — Contact info panel (email, phone, location) and animated form that POSTs to the backend. Links from `VITE_LINKEDIN_URL`, `VITE_GITHUB_PROFILE_URL`, `VITE_CONTACT_EMAIL`. Shows warming-up message if Render backend is cold starting.
 - **`Chatbot.jsx`** *(lazy loaded)* — Floating AI assistant that streams responses from the Groq-powered backend. Shows warming-up message if Render backend is cold starting.
 
-> `Github`, `Contact`, and `Chatbot` are lazy loaded via `React.lazy()` to reduce the initial JS bundle size.
+> `Projects`, `Prompts`, `Skills`, `Experience`, `Github`, `Contact`, and `Chatbot` are lazy loaded via `React.lazy()` to reduce the initial JS bundle size. All lazy blocks are wrapped in `ErrorBoundary` to prevent full-page crashes on chunk load failure.
 
 ### Bundle Size Optimization
 
@@ -167,14 +214,15 @@ Reduced initial JS bundle by **32%** by lazy loading below-the-fold components (
 - `fetchpriority="high"` on LCP image for faster Largest Contentful Paint
 - Vendor code splitting (`react`, `framer-motion`, `lucide-react`) for parallel chunk loading
 - `react-icons` removed — replaced with inline SVGs (eliminates icon library from bundle)
-- `background:#030014` inlined in `index.html` to eliminate black flash before React mounts
-- `<link rel="preconnect">` for GitHub API and Render backend to reduce DNS + TCP handshake time
-- Silent `GET /` pre-warm ping fired on app mount (`App.jsx`) — warms Render backend before user needs chatbot
+- Instant HTML/CSS splash screen in `index.html` — displays before any JS loads, eliminates black screen on slow connections and WebView browsers (WhatsApp, Instagram in-app)
+- `<link rel="preconnect">` for GitHub API to reduce DNS + TCP handshake time
+- Silent `GET /` pre-warm ping fired when user **opens the chatbot** — warms backend only for users who need it, not every visitor
 
 | Metric | Before | After |
 |--------|--------|-------|
 | Profile image size | 267 kB | 4.3 kB |
-| Black screen on load | yes | no |
+| Black screen on load | yes | no (HTML splash) |
+| Loading screen delay | 2.6s forced | 550ms (animation-driven) |
 | Performance score | ~78 | 100 |
 | Accessibility score | ~79 | 100 |
 
@@ -242,6 +290,22 @@ cd src/backend && uvicorn main:app --host 0.0.0.0 --port $PORT
 
 ---
 
+## 🌗 Light / Dark Theme
+
+The portfolio ships with two themes toggled via the sun/moon button in the navbar. Preference persists in `localStorage`.
+
+| | Dark (Cyberpunk Night) | Light (Neo Frost) |
+|---|---|---|
+| Background | `#030014` | `#ffffff` |
+| Accent cyan | `#00f3ff` | `#0891b2` |
+| Accent purple | `#9d00ff` | `#7c3aed` |
+| Cards | glass/dark | `bg-white` + drop-shadow |
+| Navbar | `bg-dark-bg/80 blur` | `rgba(255,255,255,0.85) blur` |
+
+Theming uses CSS custom properties (`--bg-base`, `--text-primary`, `--shadow-elevation`, `--icon-bg`, etc.) overridden by `[data-theme="light"]` — all components adapt automatically.
+
+---
+
 ## 🛠️ Built With
 
 - **Frontend**: React (Vite), Tailwind CSS, Framer Motion, Lucide React
@@ -278,8 +342,8 @@ The backend is hosted on **Render's free tier**, which spins down after 15 minut
 
 | Method | How it works |
 |--------|-------------|
-| **UptimeRobot monitor** | Pings `GET /` every 5 minutes — Render never idles long enough to sleep |
-| **Frontend pre-warm ping** | `App.jsx` fires a silent `GET /` on every page mount — backend warms up while the visitor reads the Hero section |
+| **UptimeRobot monitor** | Pings `GET /` every 13 minutes — Render never idles long enough to sleep |
+| **Frontend pre-warm ping** | `Chatbot.jsx` fires a silent `GET /` when the user opens the chat widget — backend warms up only for users who need it |
 
 In the unlikely event the backend is still cold, the **Chatbot** and **Contact form** display graceful waiting messages:
 - After 5s → *"Warming up server, please wait..."*
